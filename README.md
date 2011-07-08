@@ -10,7 +10,6 @@ Puppet 2.6. Patches for other operating systems are welcome.
 TODO
 ----
 
-* SSH user config.
 * SSH client config.
 * SSH server config.
 
@@ -32,4 +31,12 @@ providing the module directory you cloned this repo to:
 Usage
 -----
 
-Nothing implemented yet.
+You can let this module create a new system user with a authorized ssh
+key which can be used for logging in through ssh:
+
+    ssh::user { "uggedal":
+      guid => 1000,
+      fullname => "Eivind Uggedal",
+      ssh_comment => "uggedal.com",
+      ssh_key => "a8a7dgf7ad8j13g",
+    }
