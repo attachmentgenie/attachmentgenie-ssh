@@ -1,4 +1,5 @@
-define ssh::user($guid,
+define ssh::user($ensure=present,
+                 $guid,
                  $fullname="",
                  $groups=[],
                  $ssh_comment="",
@@ -9,7 +10,7 @@ define ssh::user($guid,
   $username = $name
 
   group { $username:
-    ensure => present,
+    ensure => $ensure,
     allowdupe => false,
     gid => $guid,
   }
@@ -21,7 +22,7 @@ define ssh::user($guid,
   }
 
   user { $username:
-    ensure => present,
+    ensure => $ensure,
     allowdupe => false,
     home => "/home/$username",
     managehome => true,
@@ -35,7 +36,10 @@ define ssh::user($guid,
   }
 
   file { "/home/$username":
-    ensure => directory,
+    ensure => $ensure ? {
+      'present' => 'directory',
+      default => $ensure,
+    },
     owner => $username,
     group => $username,
     require => User[$username],
@@ -43,7 +47,7 @@ define ssh::user($guid,
 
   if $ssh_key != "" {
     ssh_authorized_key { "${name}@${ssh_comment}":
-      ensure  => "present",
+      ensure  => $ensure,
       key => $ssh_key,
       target  => "/home/$username/.ssh/authorized_keys",
       user  => $username,
