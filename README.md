@@ -10,7 +10,6 @@ Puppet 2.6. Patches for other operating systems are welcome.
 TODO
 ----
 
-* SSH user deletion (proper reverse dependencies).
 * SSH client config.
 * SSH server config.
 

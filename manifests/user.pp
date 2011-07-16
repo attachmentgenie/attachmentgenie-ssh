@@ -9,6 +9,13 @@ define ssh::user($ensure=present,
 
   $username = $name
 
+  if $ensure == present {
+    Group[$username] -> User[$username] -> File["/home/$username"]
+  } else {
+    Group[$username] <- File["/home/$username"] -> User[$username]
+    Group[$username] <- User[$username]
+  }
+
   group { $username:
     ensure => $ensure,
     allowdupe => false,
@@ -32,7 +39,6 @@ define ssh::user($ensure=present,
     password => $password,
     shell => $shell,
     comment => $fullname,
-    require => Group[$username],
   }
 
   file { "/home/$username":
@@ -42,17 +48,23 @@ define ssh::user($ensure=present,
     },
     owner => $username,
     group => $username,
-    require => User[$username],
   }
 
   if $ssh_key != "" {
+
+    if $ensure == present {
+      File["/home/$username"] -> Ssh_authorized_key["${name}@${ssh_comment}"]
+    } else {
+      Ssh_authorized_key["${name}@${ssh_comment}"] -> User[$username]
+      Ssh_authorized_key["${name}@${ssh_comment}"] -> Group[$username]
+    }
+
     ssh_authorized_key { "${name}@${ssh_comment}":
       ensure  => $ensure,
       key => $ssh_key,
       target  => "/home/$username/.ssh/authorized_keys",
       user  => $username,
       type  => "ssh-rsa",
-      require => File["/home/$username"],
     }
   }
 }
