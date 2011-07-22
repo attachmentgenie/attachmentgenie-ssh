@@ -31,12 +31,10 @@ providing the module directory you cloned this repo to:
 Usage
 -----
 
-You can let this module create a new system user with a authorized ssh
-key which can be used for logging in through ssh:
+You can use `ssh::user` to add an authorized ssh key to an existing user
+for effortless authentication with ssh:
 
     ssh::user { "uggedal":
-      guid => 1000,
-      fullname => "Eivind Uggedal",
-      ssh_comment => "uggedal.com",
-      ssh_key => "a8a7dgf7ad8j13g",
+      key => "a8a7dgf7ad8j13g",
+      comment => "uggedal.com",
     }
