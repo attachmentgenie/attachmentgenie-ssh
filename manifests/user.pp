@@ -10,7 +10,6 @@ define ssh::user($ensure=present, $key, $comment="") {
   ssh_authorized_key { "${name}@${comment}":
     ensure  => $ensure,
     key => $key,
-    target  => "/home/$name/.ssh/authorized_keys",
     user  => $name,
     type  => "ssh-rsa",
   }
