@@ -26,11 +26,11 @@ Usage
 
 The `ssh::client` class installs the ssh client:
 
-    import ssh::client
+    include ssh::client
 
 The `ssh::server` class installs and configures the sshd:
 
-    import ssh::server
+    include ssh::server
 
 You can specify the port the sshd should listen to by including the class
 with this special syntax:
