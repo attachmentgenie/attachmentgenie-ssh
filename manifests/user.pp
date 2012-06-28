@@ -1,4 +1,4 @@
-define ssh::user($ensure=present, $key, $comment="") {
+define ssh::user($key, $ensure=present,$comment='') {
 
   if $ensure == present {
     File["/home/$name"] -> Ssh_authorized_key["${name}@${comment}"]
@@ -8,9 +8,9 @@ define ssh::user($ensure=present, $key, $comment="") {
   }
 
   ssh_authorized_key { "${name}@${comment}":
-    ensure  => $ensure,
-    key => $key,
-    user  => $name,
-    type  => "ssh-rsa",
+    ensure => $ensure,
+    key    => $key,
+    user   => $name,
+    type   => 'ssh-rsa',
   }
 }

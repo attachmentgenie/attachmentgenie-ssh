@@ -1,5 +1,5 @@
 class ssh::client {
-  package { "openssh-client":
-    ensure => $ensure,
+  package { 'openssh-client':
+    ensure => present,
   }
 }
