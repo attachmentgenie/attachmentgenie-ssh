@@ -12,6 +12,7 @@
     "LICENSE": "53fb7bdc23e16d0ea7b01360fc70d320",
     "Modulefile": "a5b7780e219dca677d388d125ddf09a8",
     "README.md": "07ec48db3818f848b17738a91d0ceca8",
+    "Rakefile": "9b80b157fe8bf8ee3975c7dec8524204",
     "manifests\\client.pp": "f1626676eb7b23a93396c70678f986e9",
     "manifests\\init.pp": "e8351a37b6bc62e817b248dee644eb2a",
     "manifests\\server.pp": "d70e500f6c9f26e15d160006dceeb13a",
