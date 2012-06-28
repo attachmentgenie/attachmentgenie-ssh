@@ -17,7 +17,9 @@
     "manifests\\server.pp": "d70e500f6c9f26e15d160006dceeb13a",
     "manifests\\user.pp": "20b8b7860bca9d8dc8626208093318f8",
     "templates\\sshd_config.erb": "5c7eb4c1bcbf13d5c6a156a25ee6b792",
-    "tests\\client.pp": "8281bd15019d7327806c64717c7f395d"
+    "tests\\client.pp": "8281bd15019d7327806c64717c7f395d",
+    "tests\\server.pp": "d41d8cd98f00b204e9800998ecf8427e",
+    "tests\\user.pp": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "dependencies": [
     {
