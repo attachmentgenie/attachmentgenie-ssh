@@ -1,7 +1,7 @@
-name 'attachmentgenie-puppet-module-ssh'
+name 'attachmentgenie-ssh'
 version '1.0.0'
 
-author 'Bram Vogelaar'
+author 'Eivind Uggedal <eivind@uggedal.com>'
 license 'MIT License'
 project_page 'https://github.com/attachmentgenie/puppet-module-ssh'
 source 'git://github.com/attachmentgenie/puppet-module-ssh.git'
