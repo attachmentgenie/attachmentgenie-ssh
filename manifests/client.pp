@@ -1,4 +1,4 @@
-class ssh::client {
+class ssh::client inherits ssh::params {
   package { 'openssh-client':
     ensure => present,
   }
