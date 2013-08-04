@@ -32,6 +32,12 @@ You can also restrict access for only certain users:
       allowed_users => ["uggedal", "manager"],
     }
 
+And you can permit root logins:
+    
+    class { "ssh::server":
+      permit_root_login => 'yes',
+    }
+
 You can use `ssh::user` to add an authorized ssh key to an existing user
 for effortless authentication with ssh:
 

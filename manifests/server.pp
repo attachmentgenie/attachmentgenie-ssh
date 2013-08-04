@@ -1,4 +1,4 @@
-class ssh::server($port='22', $allowed_users=[]) inherits ssh::params {
+class ssh::server($port='22', $allowed_users=[], $permit_root_login='no') inherits ssh::params {
   package { 'openssh-server':
     ensure => present,
   }
