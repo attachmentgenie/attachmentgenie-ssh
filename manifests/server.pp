@@ -16,4 +16,9 @@ class ssh::server($port='22', $allowed_users=[], $permit_root_login='no') inheri
     subscribe => [Package['openssh-server'], File['/etc/ssh/sshd_config']],
     require   => File['/etc/ssh/sshd_config'],
   }
+  
+  if $permit_root_login == 'true' {
+    notify { "You permit root login: use it with caution.": }
+  }
+  
 }
