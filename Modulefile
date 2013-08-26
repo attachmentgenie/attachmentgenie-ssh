@@ -1,5 +1,5 @@
 name 'attachmentgenie-ssh'
-version '1.1.1'
+version '1.1.2'
 
 author 'Eivind Uggedal <eivind@uggedal.com>'
 license 'MIT License'
