@@ -1,7 +1,9 @@
 language: ruby
+install: sudo ln -s $TRAVIS_BUILD_DIR `dirname $TRAVIS_BUILD_DIR`/ssh
 script:
-  - "rake lint"
-  - "rake spec"
+  - "bundle install && bundle exec rake lint spec SPEC_OPTS='--format documentation' "
+  - "puppet apply --modulepath=`dirname $TRAVIS_BUILD_DIR` --noop tests/client.pp"
+  - "puppet apply --modulepath=`dirname $TRAVIS_BUILD_DIR` --noop tests/server.pp"
 rvm:
   - 1.8.7
   - 1.9.3

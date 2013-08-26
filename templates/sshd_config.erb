@@ -1,5 +1,5 @@
 # Package generated configuration file
-# See the sshd(8) manpage for details
+# See the sshd_config(5) manpage for details
 
 # What ports, IPs and protocols we listen for
 Port <%= @port %>
@@ -8,8 +8,9 @@ Port <%= @port %>
 #ListenAddress 0.0.0.0
 Protocol 2
 # HostKeys for protocol version 2
-HostKey /etc/ssh/ssh_host_rsa_key
-HostKey /etc/ssh/ssh_host_dsa_key
+<% @host_keys.each do |key| -%>
+HostKey <%= key %>
+<% end -%>
 #Privilege Separation is turned on for security
 UsePrivilegeSeparation yes
 
@@ -47,7 +48,7 @@ PermitEmptyPasswords no
 ChallengeResponseAuthentication no
 
 # Change to no to disable tunnelled clear text passwords
-PasswordAuthentication no
+PasswordAuthentication <%= @password_authentication %>
 
 # Kerberos options
 #KerberosAuthentication no
@@ -56,10 +57,11 @@ PasswordAuthentication no
 #KerberosTicketCleanup yes
 
 # GSSAPI options
-#GSSAPIAuthentication no
+GSSAPIAuthentication no
 #GSSAPICleanupCredentials yes
 
-X11Forwarding no
+X11Forwarding <%= @x11_forwarding %>
+X11DisplayOffset 10
 PrintMotd no
 PrintLastLog yes
 TCPKeepAlive yes
@@ -71,8 +73,8 @@ TCPKeepAlive yes
 # Allow client to pass locale environment variables
 AcceptEnv LANG LC_*
 
-Subsystem sftp /usr/lib/openssh/sftp-server
-
+#Subsystem sftp /usr/lib/openssh/sftp-server
+Subsystem sftp <%= @subsystem_sftp %>
 UsePAM yes
 
 <% if @allowed_users.any? %>
