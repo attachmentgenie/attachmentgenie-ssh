@@ -1,16 +1,14 @@
-require 'rake'
+require 'rubygems'
+require 'bundler/setup'
 
-begin
-  require 'rspec/core/rake_task'
-  require 'puppet-lint/tasks/puppet-lint'
-rescue LoadError
-  require 'rubygems'
-  retry
-end
+Bundler.require :default
 
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.pattern = 'spec/*/*_spec.rb'
-end
+require 'puppetlabs_spec_helper/rake_tasks'
+require 'rspec-system/rake_task'
+require 'puppet-lint/tasks/puppet-lint'
+
+PuppetLint.configuration.send("disable_80chars")
+PuppetLint.configuration.ignore_paths = ["pkg/**/*.pp"]
 
 task :test => [:spec, :lint]
 
