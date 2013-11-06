@@ -80,3 +80,6 @@ UsePAM yes
 <% if @allowed_users.any? %>
 AllowUsers <%= @allowed_users.join(" ") %>
 <% end %>
+<% if @allowed_groups.any? -%>
+AllowGroups <%= @allowed_groups.join(" ") %>
+<% end -%>
