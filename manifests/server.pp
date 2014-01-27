@@ -2,6 +2,8 @@ class ssh::server(
   $port='22',
   $allowed_users=[],
   $allowed_groups=[],
+  $password_authentication_groups=[],
+  $password_authentication_users=[],
   $x11_forwarding='no',
   $password_authentication='no',
   $subsystem_sftp='/usr/lib/openssh/sftp-server',

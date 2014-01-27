@@ -83,3 +83,21 @@ AllowUsers <%= @allowed_users.join(" ") %>
 <% if @allowed_groups.any? -%>
 AllowGroups <%= @allowed_groups.join(" ") %>
 <% end -%>
+
+
+<% if @password_authentication_groups.any? -%>
+<% @password_authentication_groups.each do |val| -%>
+<%= val %>
+Match Group <%= val %>
+    PasswordAuthentication yes
+<% end -%>
+<% end -%>
+
+<% if @password_authentication_users.any? -%>
+<% @password_authentication_users.each do |val| -%>
+<%= val %>
+Match User <%= val %>
+    PasswordAuthentication yes
+<% end -%>
+<% end -%>
+
