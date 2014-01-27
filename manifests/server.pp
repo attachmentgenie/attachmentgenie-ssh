@@ -6,6 +6,7 @@ class ssh::server(
   $password_authentication_users=[],
   $x11_forwarding='no',
   $password_authentication='no',
+  $pubkey_authentication='yes',
   $subsystem_sftp='/usr/lib/openssh/sftp-server',
   $permit_root_login='no',
   $host_keys=$ssh::params::host_keys,
