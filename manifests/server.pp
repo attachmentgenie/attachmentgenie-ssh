@@ -3,6 +3,7 @@ class ssh::server(
   $allowed_users=[],
   $allowed_groups=[],
   $x11_forwarding='no',
+  $use_dns='yes',
   $password_authentication='no',
   $subsystem_sftp='/usr/lib/openssh/sftp-server',
   $permit_root_login='no',
