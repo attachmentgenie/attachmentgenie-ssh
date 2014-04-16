@@ -28,8 +28,8 @@ PermitRootLogin <%= @permit_root_login %>
 StrictModes yes
 
 RSAAuthentication yes
-PubkeyAuthentication yes
-#AuthorizedKeysFile	%h/.ssh/authorized_keys
+PubkeyAuthentication <%= @pubkey_authentication %>
+AuthorizedKeysFile	%h/.ssh/authorized_keys
 
 # Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts yes
@@ -84,3 +84,19 @@ AllowUsers <%= @allowed_users.join(" ") %>
 <% if @allowed_groups.any? -%>
 AllowGroups <%= @allowed_groups.join(" ") %>
 <% end -%>
+
+
+<% if @password_authentication_groups.any? -%>
+<% @password_authentication_groups.each do |val| -%>
+Match Group <%= val %>
+    PasswordAuthentication yes
+<% end -%>
+<% end -%>
+
+<% if @password_authentication_users.any? -%>
+<% @password_authentication_users.each do |val| -%>
+Match User <%= val %>
+    PasswordAuthentication yes
+<% end -%>
+<% end -%>
+
