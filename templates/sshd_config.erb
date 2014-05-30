@@ -76,7 +76,7 @@ AcceptEnv LANG LC_*
 
 #Subsystem sftp /usr/lib/openssh/sftp-server
 Subsystem sftp <%= @subsystem_sftp %>
-UsePAM yes
+UsePAM <%= @use_pam %>
 
 <% if @allowed_users.any? %>
 AllowUsers <%= @allowed_users.join(" ") %>
