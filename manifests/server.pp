@@ -11,6 +11,7 @@ class ssh::server(
   $subsystem_sftp='/usr/lib/openssh/sftp-server',
   $use_pam='yes',
   $permit_root_login='no',
+  $print_motd = $ssh::params::print_motd,
   $host_keys=$ssh::params::host_keys,
   $manage_service=true
 ) inherits ssh::params {

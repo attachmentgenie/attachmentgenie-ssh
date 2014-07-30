@@ -1,4 +1,5 @@
 class ssh::params {
+  $print_motd   = 'no'
   case $::osfamily {
     'Debian': {
       $service_name = 'ssh'
