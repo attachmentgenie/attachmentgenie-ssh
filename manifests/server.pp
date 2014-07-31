@@ -1,4 +1,4 @@
-class ssh::server(
+class ssh::server (
   $port='22',
   $allowed_users=[],
   $allowed_groups=[],
