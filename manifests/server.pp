@@ -22,9 +22,9 @@ class ssh::server(
   file { '/etc/ssh/sshd_config':
     content => template('ssh/sshd_config.erb'),
     require => Package['openssh-server'],
-    owner => root,
-    group => root,
-    mode  => '0644'
+    owner   => root,
+    group   => root,
+    mode    => '0644'
   }
 
   if $manage_service {
@@ -38,7 +38,7 @@ class ssh::server(
     }
   }
 
-  if $permit_root_login == 'true' {
-    notify { "You permit root login: use it with caution.": }
+  if $permit_root_login == 'yes' {
+    notify { 'You permit root login: use it with caution.': }
   }
 }

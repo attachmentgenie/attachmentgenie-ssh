@@ -8,7 +8,7 @@ class ssh::params {
       $service_name = 'sshd'
     }
     default: {
-      fail("Unsupported osfamily $::osfamily, currently only supports Debian and RedHat")
+      fail("Unsupported osfamily ${::osfamily}, currently only supports Debian and RedHat")
     }
   }
   case $::operatingsystem {
