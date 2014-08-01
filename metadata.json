@@ -1,0 +1,14 @@
+{
+  "name": "attachmentgenie-ssh",
+  "version": "1.3.2",
+  "author": "Eivind Uggedal <eivind@uggedal.com>",
+  "summary": "Puppet ssh Module",
+  "license": "MIT License",
+  "source": "git://github.com/attachmentgenie/puppet-module-ssh.git",
+  "project_page": "https://github.com/attachmentgenie/puppet-module-ssh",
+  "issues_url": "https://github.com/attachmentgenie/puppet-module-ssh/issues",
+  "description": "Module for configuring ssh.",
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">=2.2.1"}
+  ]
+}
