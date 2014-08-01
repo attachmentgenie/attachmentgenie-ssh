@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/attachmentgenie/puppet-module-ssh.png)](http://travis-ci.org/attachmentgenie/puppet-module-ssh)
+[![Build Status](https://secure.travis-ci.org/attachmentgenie/attachmentgenie-ssh.png)](http://travis-ci.org/attachmentgenie/attachmentgenie-ssh)
 
 Puppet SSH Module
 =================
