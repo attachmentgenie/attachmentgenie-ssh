@@ -13,7 +13,8 @@ class ssh::server (
   $permit_root_login='no',
   $print_motd = $ssh::params::print_motd,
   $host_keys=$ssh::params::host_keys,
-  $manage_service=true
+  $manage_service=true,
+  $accept_env='LANG LC_*'
 ) inherits ssh::params {
   package { 'openssh-server':
     ensure => present,
@@ -41,4 +42,5 @@ class ssh::server (
   if $permit_root_login == 'yes' {
     notify { 'You permit root login: use it with caution.': }
   }
+  
 }
