@@ -71,8 +71,8 @@ UseDNS <%= @use_dns %>
 #MaxStartups 10:30:60
 #Banner /etc/issue.net
 
-# Allow client to pass locale environment variables
-AcceptEnv LANG LC_*
+# Allow setting environment variables
+AcceptEnv <%= @accept_env %>
 
 #Subsystem sftp /usr/lib/openssh/sftp-server
 Subsystem sftp <%= @subsystem_sftp %>
