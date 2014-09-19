@@ -26,6 +26,7 @@ describe 'ssh::server', :type => :class do
     }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_rsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_dsa_key$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").without_content %r{^Banner.*$} }
   end
   context "on a Debian OS 7" do
     let :facts do
@@ -38,6 +39,11 @@ describe 'ssh::server', :type => :class do
         :operatingsystemrelease => '7',
         :path                   => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
         :concat_basedir         => '/dne',
+      }
+    end
+    let :params do
+      {
+        :banner                 => '/etc/banner.txt',
       }
     end
     it { is_expected.to contain_package("openssh-server").with(
@@ -53,5 +59,6 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_rsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_dsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_ecdsa_key$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Banner /etc/banner.txt$} }
   end
 end
