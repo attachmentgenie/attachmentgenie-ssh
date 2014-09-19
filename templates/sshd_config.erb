@@ -69,7 +69,9 @@ TCPKeepAlive yes
 UseDNS <%= @use_dns %>
 
 #MaxStartups 10:30:60
-#Banner /etc/issue.net
+<% if @banner -%>
+Banner <%= @banner %>
+<% end -%>
 
 # Allow client to pass locale environment variables
 AcceptEnv LANG LC_*
