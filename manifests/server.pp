@@ -14,7 +14,8 @@ class ssh::server (
   $print_motd = $ssh::params::print_motd,
   $host_keys=$ssh::params::host_keys,
   $manage_service=true,
-  $banner=undef
+  $banner=undef,
+  $ciphers=[]
 ) inherits ssh::params {
   package { 'openssh-server':
     ensure => present,

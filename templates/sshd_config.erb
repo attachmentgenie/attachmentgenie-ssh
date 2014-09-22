@@ -73,6 +73,10 @@ UseDNS <%= @use_dns %>
 Banner <%= @banner %>
 <% end -%>
 
+<% if @ciphers -%>
+Ciphers <%= @ciphers.join(",") %>
+<% end -%>
+
 # Allow client to pass locale environment variables
 AcceptEnv LANG LC_*
 
