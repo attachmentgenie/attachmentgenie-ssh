@@ -15,7 +15,9 @@ class ssh::server (
   $host_keys=$ssh::params::host_keys,
   $manage_service=true,
   $banner=undef,
-  $ciphers=[]
+  $ciphers=[],
+  $client_alive_interval=undef,
+  $client_alive_count_max=undef
 ) inherits ssh::params {
   package { 'openssh-server':
     ensure => present,

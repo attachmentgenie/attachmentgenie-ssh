@@ -73,6 +73,13 @@ UseDNS <%= @use_dns %>
 Banner <%= @banner %>
 <% end -%>
 
+<% if @client_alive_interval -%>
+ClientAliveInterval <%= @client_alive_interval %>
+<% end -%>
+<% if @client_alive_count_max -%>
+ClientAliveCountMax <%= @client_alive_count_max %>
+<% end -%>
+
 <% if @ciphers -%>
 Ciphers <%= @ciphers.join(",") %>
 <% end -%>
