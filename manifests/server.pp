@@ -14,7 +14,7 @@ class ssh::server (
   $print_motd = $ssh::params::print_motd,
   $host_keys=$ssh::params::host_keys,
   $manage_service=true,
-  $banner=undef,
+  $banner='/etc/issue.net',
   $ciphers=[],
   $client_alive_interval=undef,
   $client_alive_count_max=undef

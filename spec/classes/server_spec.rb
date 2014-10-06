@@ -26,7 +26,7 @@ describe 'ssh::server', :type => :class do
     }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_rsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_dsa_key$} }
-    it { is_expected.to contain_file("/etc/ssh/sshd_config").without_content %r{^Banner.*$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Banner /etc/issue.net$} }
   end
   context "on a Debian OS 7" do
     let :facts do
