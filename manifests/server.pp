@@ -13,14 +13,15 @@ class ssh::server (
   $permit_root_login='no',
   $print_motd = $ssh::params::print_motd,
   $host_keys=$ssh::params::host_keys,
-  $manage_service=true
+  $manage_service=true,
+  $template='ssh/sshd_config.erb'
 ) inherits ssh::params {
   package { 'openssh-server':
     ensure => present,
   }
 
   file { '/etc/ssh/sshd_config':
-    content => template('ssh/sshd_config.erb'),
+    content => template($template),
     require => Package['openssh-server'],
     owner   => root,
     group   => root,
