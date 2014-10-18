@@ -17,14 +17,15 @@ class ssh::server (
   $banner='/etc/issue.net',
   $ciphers=[],
   $client_alive_interval=undef,
-  $client_alive_count_max=undef
+  $client_alive_count_max=undef,
+  $template='ssh/sshd_config.erb'
 ) inherits ssh::params {
   package { 'openssh-server':
     ensure => present,
   }
 
   file { '/etc/ssh/sshd_config':
-    content => template('ssh/sshd_config.erb'),
+    content => template($template),
     require => Package['openssh-server'],
     owner   => root,
     group   => root,
