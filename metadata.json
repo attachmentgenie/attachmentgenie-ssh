@@ -1,7 +1,7 @@
 {
   "name": "attachmentgenie-ssh",
-  "version": "1.3.2",
-  "author": "Eivind Uggedal <eivind@uggedal.com>",
+  "version": "1.4.0",
+  "author": "Bram Vogelaar <bram@attachmentgenie.com>",
   "summary": "Puppet ssh Module",
   "license": "MIT License",
   "source": "git://github.com/attachmentgenie/attachmentgenie-ssh.git",
