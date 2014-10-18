@@ -18,7 +18,8 @@ class ssh::server (
   $ciphers=[],
   $client_alive_interval=undef,
   $client_alive_count_max=undef,
-  $template='ssh/sshd_config.erb'
+  $template='ssh/sshd_config.erb',
+  $accept_env='LANG LC_*'
 ) inherits ssh::params {
   package { 'openssh-server':
     ensure => present,
@@ -46,4 +47,5 @@ class ssh::server (
   if $permit_root_login == 'yes' {
     notify { 'You permit root login: use it with caution.': }
   }
+
 }

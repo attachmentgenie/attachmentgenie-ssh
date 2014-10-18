@@ -84,8 +84,8 @@ ClientAliveCountMax <%= @client_alive_count_max %>
 Ciphers <%= @ciphers.join(",") %>
 <% end -%>
 
-# Allow client to pass locale environment variables
-AcceptEnv LANG LC_*
+# Allow setting environment variables
+AcceptEnv <%= @accept_env %>
 
 #Subsystem sftp /usr/lib/openssh/sftp-server
 Subsystem sftp <%= @subsystem_sftp %>
