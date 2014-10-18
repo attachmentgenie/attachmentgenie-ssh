@@ -80,7 +80,7 @@ ClientAliveInterval <%= @client_alive_interval %>
 ClientAliveCountMax <%= @client_alive_count_max %>
 <% end -%>
 
-<% if @ciphers -%>
+<% if @ciphers.any? -%>
 Ciphers <%= @ciphers.join(",") %>
 <% end -%>
 
