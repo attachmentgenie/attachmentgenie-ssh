@@ -45,6 +45,7 @@ describe 'ssh::server', :type => :class do
       {
         :banner                 => '/etc/banner.txt',
         :ciphers                => ['aes128-ctr','aes192-ctr','aes256-ctr','arcfour256','arcfour128'],
+        :macs                   => ['hmac-sha1','hmac-ripemd160'],
         :client_alive_interval  => '30',
         :client_alive_count_max => '5'
       }
@@ -64,6 +65,7 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_ecdsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Banner /etc/banner.txt$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^MACs hmac-sha1,hmac-ripemd160$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^ClientAliveInterval 30$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^ClientAliveCountMax 5$} }
   end
