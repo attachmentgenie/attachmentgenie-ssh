@@ -14,7 +14,7 @@ class ssh::params {
   case $::operatingsystem {
     'Debian': {
       case $::operatingsystemrelease {
-        /^7.*$/ : {
+        /^[78].*$/ : {
           $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
         }
         default : {
