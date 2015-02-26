@@ -1,1 +1,3 @@
-# Required by Puppet for loading the module
+class ssh {
+  warning { '::ssh is not used in this module.': }
+}

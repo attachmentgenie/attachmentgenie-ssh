@@ -1,23 +1,46 @@
 [![Build Status](https://secure.travis-ci.org/attachmentgenie/attachmentgenie-ssh.png)](http://travis-ci.org/attachmentgenie/attachmentgenie-ssh)
 
-Puppet SSH Module
-=================
+#attachmentgenie/ssh
 
-Module for configuring ssh.
+####Table of Contents
 
-Tested on Debian GNU/Linux 6.0 Squeeze and Ubuntu 10.4 LTS and 12.04 LTS with
-Puppet 2.6 and 2.7. Patches for other operating systems are welcome.
+1. [Overview](#overview)
+2. [Module Description - What the module does and why it is useful](#module-description)
+3. [Setup - The basics of getting started with attachmentgenie/timezone](#setup)
+    * [What attachmentgenie/timezone affects](#what-attachmentgenie/timezone-affects)
+    * [Beginning with attachmentgenie/timezone](#beginning-with-attachmentgenie/timezone)
+4. [Usage - Configuration options and additional functionality](#usage)
+5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+5. [Limitations - OS compatibility, etc.](#limitations)
+6. [Development - Guide for contributing to the module](#development)
 
-Usage
------
+##Overview
+
+Module for configuring ssh on your Centos, Debian, Redhat, Ubuntu node.
+
+##Module Description
+
+The module makes it possible to install a ssh server and/or client and to add authorized ssh keys to existing users.
+
+##Setup
+
+###What attachmentgenie/timezone affects
+
+* ssh server
+* ssh client
+* add authorized ssh keys to existing users.
+
+###Beginning with attachmentgenie/timezone	
 
 The `ssh::client` class installs the ssh client:
 
-    include ssh::client
+    class { "ssh::client"; }
 
 The `ssh::server` class installs and configures the sshd:
 
-    include ssh::server
+    class { "ssh::server"; }
+    
+##Usage
 
 You can specify the port the sshd should listen to by including the class
 with this special syntax:
@@ -48,3 +71,131 @@ for effortless authentication with ssh:
       key => "a8a7dgf7ad8j13g",
       comment => "uggedal.com",
     }
+
+##Reference
+
+###Classes
+
+####Public Classes
+
+* ssh:         Class is not used and will throw a notice.
+* ssh::server: Class that installs and configures a ssh server.
+* ssh::client: Class that installs and configures a ssh client.
+* ssh::user:   Class to add ssh keys to existing users.
+
+###Parameters
+
+The following parameters are available in the `ssh::server` class:
+
+####`zone`
+
+Set what timezone to use on this node. Default value: 'UTC'
+####`port`
+
+Default value:22',
+
+####`allowed_users`
+
+Default value:[],
+
+####`allowed_groups`
+
+Default value:[],
+
+####`password_authentication_groups`
+
+Default value:[],
+
+####`password_authentication_users`
+
+Default value:[],
+
+####`x11_forwarding`
+
+Default value:no',
+
+####`use_dns`
+
+Default value:yes',
+
+####`password_authentication`
+
+Default value:no',
+
+####`pubkey_authentication`
+
+Default value:yes',
+
+####`subsystem_sftp`
+
+Default value:/usr/lib/openssh/sftp-server',
+
+####`use_pam`
+
+Default value:yes',
+
+####`permit_root_login`
+
+Default value:no',
+
+####`print_motd `
+
+Default value: $ssh::params::print_motd,
+
+####`host_keys`
+
+Default value:$ssh::params::host_keys,
+
+####`manage_service`
+
+Default value:true,
+
+####`banner`
+
+Default value:/etc/issue.net',
+
+####`ciphers`
+
+Default value:[],
+
+####`macs`
+
+Default value:[],
+
+####`client_alive_interval`
+
+Default value:undef,
+
+####`client_alive_count_max`
+
+Default value:undef,
+
+####`template`
+
+Default value:ssh/sshd_config.erb',
+
+####`accept_env`
+
+Default value:LANG LC_*'
+
+The following parameters are available in the `ssh::server` class:
+
+####`key`
+
+ssh key to add to user.
+
+####`ensure`
+
+Default value: present
+
+####`comment`
+
+Comment to add to the ssh key. Default value: ''
+
+##Limitations
+
+Currently there are no know limitations
+
+##Development
+
+Please see [CONTRIBUTING](https://github.com/attachmentgenie/attachmentgenie-ssh/blob/master/CONTRIBUTING.md) for details.
