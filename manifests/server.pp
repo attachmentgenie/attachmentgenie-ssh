@@ -16,6 +16,7 @@ class ssh::server (
   $manage_service=true,
   $banner='/etc/issue.net',
   $ciphers=[],
+  $macs=[],
   $client_alive_interval=undef,
   $client_alive_count_max=undef,
   $template='ssh/sshd_config.erb',

@@ -84,6 +84,10 @@ ClientAliveCountMax <%= @client_alive_count_max %>
 Ciphers <%= @ciphers.join(",") %>
 <% end -%>
 
+<% if @macs.any? -%>
+MACs <%= @macs.join(",") %>
+<% end -%>
+
 # Allow setting environment variables
 AcceptEnv <%= @accept_env %>
 
