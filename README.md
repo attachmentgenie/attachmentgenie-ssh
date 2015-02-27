@@ -6,9 +6,9 @@
 
 1. [Overview](#overview)
 2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with attachmentgenie/timezone](#setup)
-    * [What attachmentgenie/timezone affects](#what-attachmentgenie/timezone-affects)
-    * [Beginning with attachmentgenie/timezone](#beginning-with-attachmentgenie/timezone)
+3. [Setup - The basics of getting started with attachmentgenie/ssh](#setup)
+    * [What attachmentgenie/ssh affects](#what-attachmentgenie/ssh-affects)
+    * [Beginning with attachmentgenie/ssh](#beginning-with-attachmentgenie/ssh)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -24,13 +24,13 @@ The module makes it possible to install a ssh server and/or client and to add au
 
 ##Setup
 
-###What attachmentgenie/timezone affects
+###What attachmentgenie/ssh affects
 
 * ssh server
 * ssh client
 * add authorized ssh keys to existing users.
 
-###Beginning with attachmentgenie/timezone	
+###Beginning with attachmentgenie/ssh	
 
 The `ssh::client` class installs the ssh client:
 
@@ -89,7 +89,7 @@ The following parameters are available in the `ssh::server` class:
 
 ####`zone`
 
-Set what timezone to use on this node. Default value: 'UTC'
+Set what ssh to use on this node. Default value: 'UTC'
 ####`port`
 
 Default value:22',
