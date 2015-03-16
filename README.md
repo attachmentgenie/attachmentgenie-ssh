@@ -34,30 +34,30 @@ The module makes it possible to install a ssh server and/or client and to add au
 
 The `ssh::client` class installs the ssh client:
 
-    class { "ssh::client"; }
+    class { 'ssh::client': }
 
 The `ssh::server` class installs and configures the sshd:
 
-    class { "ssh::server"; }
+    class { 'ssh::server': }
     
 ##Usage
 
 You can specify the port the sshd should listen to by including the class
 with this special syntax:
 
-    class { "ssh::server":
+    class { 'ssh::server':
       port => 20009,
     }
 
 You can also restrict access for only certain users:
 
-    class { "ssh::server":
-      allowed_users => ["uggedal", "manager"],
+    class { 'ssh::server':
+      allowed_users => ['uggedal', 'manager'],
     }
 
 And you can permit root logins (not recommended):
     
-    class { "ssh::server":
+    class { 'ssh::server':
       permit_root_login => 'yes',
     }
     
@@ -67,9 +67,9 @@ use something like ```sudo``` instead.
 You can use `ssh::user` to add an authorized ssh key to an existing user
 for effortless authentication with ssh:
 
-    ssh::user { "uggedal":
-      key => "a8a7dgf7ad8j13g",
-      comment => "uggedal.com",
+    ssh::user { 'uggedal':
+      key => 'a8a7dgf7ad8j13g',
+      comment => 'uggedal.com',
     }
 
 ##Reference
