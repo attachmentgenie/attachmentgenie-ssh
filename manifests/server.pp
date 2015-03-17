@@ -50,7 +50,7 @@ class ssh::server (
 
   if str2bool($manage_banner) {
     file { $banner:
-      content => template($template),
+      content => template($template_banner),
       require => Package['openssh-server'],
       owner   => root,
       group   => root,
