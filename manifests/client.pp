@@ -1,5 +1,8 @@
 class ssh::client (
-  $template = $::ssh::params::client_config_template,
+  $enable_ssh_key_sign      = $::ssh::params::client_enable_ssh_key_sign,
+  $forward_agent            = $::ssh::params::client_forward_agent,
+  $hostbased_authentication = $::ssh::params::client_hostbased_authentication,
+  $template                 = $::ssh::params::client_config_template,
 ) inherits ssh::params {
   case $::osfamily {
       'RedHat': { $sshclientpkg = 'openssh-clients' }

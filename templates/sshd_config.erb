@@ -25,6 +25,7 @@ LogLevel INFO
 LoginGraceTime 120
 PermitRootLogin <%= @permit_root_login %>
 StrictModes yes
+MaxAuthRetries <%= @max_auth_retries %>
 
 RSAAuthentication yes
 PubkeyAuthentication <%= @pubkey_authentication %>
@@ -115,3 +116,4 @@ Match User <%= val %>
 <% end -%>
 <% end -%>
 
+PermitTunnel<%= @permit_tunnel %>

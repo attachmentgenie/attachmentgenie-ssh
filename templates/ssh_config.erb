@@ -1,12 +1,13 @@
 # Managed by Puppet
 
 Host *
-#   ForwardAgent no
+ForwardAgent <%= @forward_agent %>
+HostbasedAuthentication <%= @hostbased_authentication %>
+EnableSSHKeySign <%= @enable_ssh_key_sign %>
 #   ForwardX11 no
 #   RhostsRSAAuthentication no
 #   RSAAuthentication yes
 #   PasswordAuthentication yes
-#   HostbasedAuthentication no
 #   GSSAPIAuthentication no
 #   GSSAPIDelegateCredentials no
 #   GSSAPIKeyExchange no
