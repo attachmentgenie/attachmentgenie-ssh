@@ -43,7 +43,7 @@ describe 'ssh::server', :type => :class do
     end
     let :params do
       {
-        :banner                 => '/etc/banner.txt',
+        :banner_file            => '/etc/banner.txt',
         :ciphers                => ['aes128-ctr','aes192-ctr','aes256-ctr','arcfour256','arcfour128'],
         :macs                   => ['hmac-sha1','hmac-ripemd160'],
         :client_alive_interval  => '30',

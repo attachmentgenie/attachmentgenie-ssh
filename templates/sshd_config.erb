@@ -69,8 +69,8 @@ TCPKeepAlive yes
 UseDNS <%= @use_dns %>
 
 #MaxStartups 10:30:60
-<% if @banner -%>
-Banner <%= @banner %>
+<% if @banner_file -%>
+Banner <%= @banner_file %>
 <% end -%>
 
 <% if @client_alive_interval -%>
