@@ -22,7 +22,7 @@ class ssh::server (
   $macs                           = $::ssh::params::macs,
   $client_alive_interval          = $::ssh::params::client_alive_interval,
   $client_alive_count_max         = $::ssh::params::client_alive_count_max,
-  $template                       = $::ssh::params::template,
+  $template                       = $::ssh::params::server_config_template,
   $accept_env                     = $::ssh::params::accept_env
 ) inherits ssh::params {
   package { 'openssh-server':

@@ -20,7 +20,8 @@ class ssh::params {
   $macs                           = []
   $client_alive_interval          = undef
   $client_alive_count_max         = undef
-  $template                       = 'ssh/sshd_config.erb'
+  $client_config_template         = 'ssh/ssh_config.erb'
+  $server_config_template         = 'ssh/sshd_config.erb'
   $accept_env                     = 'LANG LC_*'
   case $::osfamily {
     'Debian': {

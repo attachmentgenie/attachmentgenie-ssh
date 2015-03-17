@@ -1,4 +1,6 @@
-class ssh::client inherits ssh::params {
+class ssh::client (
+  $template = $::ssh::params::client_config_template,
+) inherits ssh::params {
   case $::osfamily {
       'RedHat': { $sshclientpkg = 'openssh-clients' }
       'Debian': { $sshclientpkg = 'openssh-client' }
@@ -6,5 +8,13 @@ class ssh::client inherits ssh::params {
       }
   package { $sshclientpkg:
     ensure => present,
+  }
+
+  file { '/etc/ssh/ssh_config':
+    content => template($template),
+    require => Package[$sshclientpkg],
+    owner   => root,
+    group   => root,
+    mode    => '0644'
   }
 }
