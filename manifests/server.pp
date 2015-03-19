@@ -57,8 +57,4 @@ class ssh::server (
       mode    => '0644'
     }
   }
-
-  if $permit_root_login == 'yes' {
-    notify { 'You permit root login: use it with caution.': }
-  }
 }
