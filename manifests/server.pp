@@ -2,6 +2,7 @@ class ssh::server (
   $accept_env                     = $::ssh::params::accept_env,
   $allowed_users                  = $::ssh::params::allowed_users,
   $allowed_groups                 = $::ssh::params::allowed_groups,
+  $authorized_keys_file           = $::ssh::params::authorized_keys_file,
   $banner_file                    = $::ssh::params::banner_file,
   $banner_manage                  = $::ssh::params::banner_manage,
   $banner_template                = $::ssh::params::banner_template,

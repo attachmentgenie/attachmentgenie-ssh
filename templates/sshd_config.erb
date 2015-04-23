@@ -28,7 +28,15 @@ StrictModes yes
 
 RSAAuthentication yes
 PubkeyAuthentication <%= @pubkey_authentication %>
-AuthorizedKeysFile	%h/.ssh/authorized_keys
+<%- if @authorized_keys_file.any? -%>
+<%- if @osfamily == 'RedHat' -%>
+<%# RedHat 6 has openssh-5.3, and it does not support multi AuthorizedKeysFile %>
+<%# So we take the first one%>
+AuthorizedKeysFile <%= @authorized_keys_file.flatten[0] %>
+<%- else -%>
+AuthorizedKeysFile <%= @authorized_keys_file.flatten.join(" ") %>
+<%- end -%>
+<%- end -%>
 
 # Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts yes
