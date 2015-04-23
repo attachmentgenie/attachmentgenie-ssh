@@ -2,7 +2,7 @@ class ssh::params {
   $accept_env                      = 'LANG LC_*'
   $allowed_users                   = []
   $allowed_groups                  = []
-  $authorized_keys_file            = '%h/.ssh/authorized_keys'
+  $authorized_keys_file            = ['%h/.ssh/authorized_keys']
   $banner_manage                   = true
   $banner_template                 = 'ssh/issue.erb'
   $client_alive_interval           = undef
