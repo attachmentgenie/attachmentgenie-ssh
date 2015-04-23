@@ -19,6 +19,7 @@ class ssh::params {
   $password_authentication         = 'no'
   $permit_root_login               = 'no'
   $permit_tunnel                   = 'no'
+  $gateway_ports                   = 'no'
   $port                            = '22'
   $print_motd                      = 'no'
   $pubkey_authentication           = 'yes'
