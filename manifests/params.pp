@@ -2,6 +2,7 @@ class ssh::params {
   $accept_env                      = 'LANG LC_*'
   $allowed_users                   = []
   $allowed_groups                  = []
+  $authorized_keys_file            = ['%h/.ssh/authorized_keys']
   $banner_manage                   = true
   $banner_template                 = 'ssh/issue.erb'
   $client_alive_interval           = undef
@@ -19,6 +20,7 @@ class ssh::params {
   $password_authentication         = 'no'
   $permit_root_login               = 'no'
   $permit_tunnel                   = 'no'
+  $gateway_ports                   = 'no'
   $port                            = '22'
   $print_motd                      = 'no'
   $pubkey_authentication           = 'yes'
