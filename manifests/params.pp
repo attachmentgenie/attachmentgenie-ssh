@@ -29,6 +29,7 @@ class ssh::params {
   $use_pam                         = 'yes'
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
+  $server_key_bits                 = '1024',
   case $::osfamily {
     'Debian': {
       $service_name = 'ssh'
