@@ -26,6 +26,7 @@ class ssh::server (
   $use_dns                        = $::ssh::params::use_dns,
   $use_pam                        = $::ssh::params::use_pam,
   $x11_forwarding                 = $::ssh::params::x11_forwarding,
+  $server_key_bits                = $::ssh::params::server_key_bits,
 ) inherits ssh::params {
   package { 'openssh-server':
     ensure => present,

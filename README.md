@@ -150,6 +150,10 @@ Default value:$ssh::params::host_keys,
 
 Default value:true,
 
+####`ServerKeyBits`
+
+Default value:1024,
+
 ####`banner`
 
 Default value:/etc/issue.net',
