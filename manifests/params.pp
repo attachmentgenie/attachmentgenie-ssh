@@ -32,30 +32,43 @@ class ssh::params {
   $server_key_bits                 = '1024'
   case $::osfamily {
     'Debian': {
-      $service_name = 'ssh'
-      $banner_file  = '/etc/issue.net'
+      $service_name       = 'ssh'
+      $banner_file        = '/etc/issue.net'
+      case $::operatingsystemrelease {
+        /(7.*|12\.04.*)/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
+        }
+        /(8.*|14\.04.*)/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key','/etc/ssh/ssh_host_ed25519_key',]
+          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256','curve25519-sha256@libssh.org']
+        }
+        default : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
+        }
+      }
     }
     'RedHat': {
       $service_name = 'sshd'
       $banner_file  = '/etc/issue'
-    }
-    default: {
-      fail("Unsupported osfamily ${::osfamily}, currently only supports Debian and RedHat")
-    }
-  }
-  case $::operatingsystem {
-    'Debian': {
       case $::operatingsystemrelease {
-        /^[78].*$/ : {
-          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+        /6.*/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
+        }
+        /7.*/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key','/etc/ssh/ssh_host_ed25519_key',]
+          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256','curve25519-sha256@libssh.org']
         }
         default : {
-          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
         }
       }
     }
-    default : {
-      $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+    default: {
+      fail("Unsupported osfamily ${::osfamily}, currently only supports Debian and RedHat")
     }
   }
 }
