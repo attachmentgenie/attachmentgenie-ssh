@@ -9,6 +9,7 @@ group :development, :unit_tests do
   gem 'simplecov',               :require => false
   gem 'puppet_facts',            :require => false
   gem 'json',                    :require => false
+  gem 'iconv',                   :require => false
   gem 'metadata-json-lint',      :require => false
 end
 
