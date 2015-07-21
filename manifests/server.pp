@@ -18,6 +18,7 @@ class ssh::server (
   $password_authentication_users  = $::ssh::params::password_authentication_users,
   $permit_root_login              = $::ssh::params::permit_root_login,
   $permit_tunnel                  = $::ssh::params::permit_tunnel,
+  $permit_user_environment        = $::ssh::params::permit_user_environment,
   $gateway_ports                  = $::ssh::params::gateway_ports,
   $print_motd                     = $::ssh::params::print_motd,
   $pubkey_authentication          = $::ssh::params::pubkey_authentication,
