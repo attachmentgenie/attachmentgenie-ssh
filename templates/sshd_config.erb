@@ -146,3 +146,14 @@ Match User <%= match_user %>
 <% end -%>
 <% end -%>
 <% end -%>
+
+<% if @match.any? -%>
+<% @match.each do |criteria, patterns| -%>
+<% patterns.each do |pattern, config| -%>
+Match <%= criteria %> <%= pattern %>
+<% config.each do |conf, value| -%>
+    <%= conf %> <%= value %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>

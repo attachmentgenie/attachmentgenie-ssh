@@ -36,6 +36,7 @@ class ssh::server (
   $use_dns                        = $::ssh::params::use_dns,
   $use_pam                        = $::ssh::params::use_pam,
   $x11_forwarding                 = $::ssh::params::x11_forwarding,
+  $match                          = $::ssh::params::match
 ) inherits ssh::params {
   validate_re( $permit_tty, 'yes|no' )
 
