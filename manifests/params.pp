@@ -30,22 +30,21 @@ class ssh::params {
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
   $server_key_bits                 = '1024'
+  $kex_algorithms                  = undef
+
   case $::osfamily {
     'Debian': {
       $service_name       = 'ssh'
       $banner_file        = '/etc/issue.net'
       case $::operatingsystemrelease {
         /(7.*|12\.04.*)/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key']
-          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
         }
         /(8.*|14\.04.*)/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key','/etc/ssh/ssh_host_ed25519_key',]
-          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256','curve25519-sha256@libssh.org']
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
         }
         default : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
         }
       }
     }
@@ -54,16 +53,13 @@ class ssh::params {
       $banner_file  = '/etc/issue'
       case $::operatingsystemrelease {
         /6.*/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key']
-          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
         }
         /7.*/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key','/etc/ssh/ssh_host_ed25519_key',]
-          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256','curve25519-sha256@libssh.org']
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
         }
         default : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-          $kex_algorithms = [ 'diffie-hellman-group14-sha1','diffie-hellman-group-exchange-sha256']
         }
       }
     }
