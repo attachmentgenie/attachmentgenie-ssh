@@ -30,7 +30,7 @@ class ssh::params {
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
   $server_key_bits                 = '1024'
-  $kex_algorithms                  = undef
+  $kex_algorithms                  = []
 
   case $::osfamily {
     'Debian': {
