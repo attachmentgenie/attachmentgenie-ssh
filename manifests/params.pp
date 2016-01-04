@@ -26,17 +26,18 @@ class ssh::params {
   $print_motd                      = 'no'
   $pubkey_authentication           = 'yes'
   $server_config_template          = 'ssh/sshd_config.erb'
-  $subsystem_sftp                  = '/usr/lib/openssh/sftp-server'
   $use_pam                         = 'yes'
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
   $server_key_bits                 = '1024'
   case $::osfamily {
     'Debian': {
+      $subsystem_sftp  = '/usr/lib/openssh/sftp-server'
       $service_name = 'ssh'
       $banner_file  = '/etc/issue.net'
     }
     'RedHat': {
+      $subsystem_sftp  = '/usr/libexec/openssh/sftp-server'
       $service_name = 'sshd'
       $banner_file  = '/etc/issue'
     }
