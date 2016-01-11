@@ -34,3 +34,9 @@ SendEnv LANG LC_*
 HashKnownHosts yes
 GSSAPIAuthentication yes
 GSSAPIDelegateCredentials no
+
+<%- if @known_host_sssd != '' -%>
+GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts
+ProxyCommand /usr/bin/sss_ssh_knownhostsproxy -p %p %h
+<%- end -%>
+PubkeyAuthentication <%= @pubkey_authentication %>
