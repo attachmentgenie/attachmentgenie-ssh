@@ -11,7 +11,7 @@ class ssh::server (
   $ciphers                        = $::ssh::params::ciphers,
   $client_alive_interval          = $::ssh::params::client_alive_interval,
   $client_alive_count_max         = $::ssh::params::client_alive_count_max,
-  $gssapi_authentication          = $::ssh::params::gssapi_authentication 
+  $gssapi_authentication          = $::ssh::params::gssapi_authentication,
   $host_keys                      = $::ssh::params::host_keys,
   $macs                           = $::ssh::params::macs,
   $manage_service                 = $::ssh::params::manage_service,
