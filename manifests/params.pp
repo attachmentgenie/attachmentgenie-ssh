@@ -16,6 +16,7 @@ class ssh::params {
   $client_hostbased_authentication = 'no'
   $gateway_ports                   = 'no'
   $gssapi_authentication           = 'no'
+  $known_host_sssd                 = undef
   $manage_service                  = true
   $max_auth_retries                = 6
   $macs                            = []

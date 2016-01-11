@@ -39,10 +39,10 @@ AuthorizedKeysFile <%= @authorized_keys_file.flatten.join(" ") %>
 <%- end -%>
 
 <%- if @authorized_keys_command? -%>
-AuthorizedKeysCommand <%= @@authorized_keys_command %>
+AuthorizedKeysCommand <%= @authorized_keys_command %>
 <%- end -%>
 <%- if @authorized_keys_command_user? -%>
-AuthorizedKeysCommandUser <%= @@authorized_keys_command_user %>
+AuthorizedKeysCommandUser <%= @authorized_keys_command_user %>
 <%- end -%>
 
 # Don't read the user's ~/.rhosts and ~/.shosts files
