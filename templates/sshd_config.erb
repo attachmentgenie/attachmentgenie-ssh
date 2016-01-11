@@ -38,10 +38,10 @@ AuthorizedKeysFile <%= @authorized_keys_file.flatten.join(" ") %>
 <%- end -%>
 <%- end -%>
 
-<%- if @authorized_keys_command? -%>
+<%- if @authorized_keys_command != '' -%>
 AuthorizedKeysCommand <%= @authorized_keys_command %>
 <%- end -%>
-<%- if @authorized_keys_command_user? -%>
+<%- if @authorized_keys_command_user != '' -%>
 AuthorizedKeysCommandUser <%= @authorized_keys_command_user %>
 <%- end -%>
 
