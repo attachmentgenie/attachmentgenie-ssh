@@ -1,5 +1,6 @@
 class ssh::server (
   $accept_env                     = $::ssh::params::accept_env,
+  $address_family                 = $::ssh::params::address_family,
   $allowed_users                  = $::ssh::params::allowed_users,
   $allowed_groups                 = $::ssh::params::allowed_groups,
   $authorized_keys_file           = $::ssh::params::authorized_keys_file,

@@ -1,5 +1,6 @@
 class ssh::params {
   $accept_env                      = 'LANG LC_*'
+  $address_family                  = undef
   $allowed_users                   = []
   $allowed_groups                  = []
   $authorized_keys_file            = ['%h/.ssh/authorized_keys']
