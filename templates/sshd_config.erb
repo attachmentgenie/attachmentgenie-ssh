@@ -18,8 +18,8 @@ KeyRegenerationInterval 3600
 ServerKeyBits <%= @server_key_bits %>
 
 # Logging
-SyslogFacility AUTH
-LogLevel INFO
+SyslogFacility <%= @syslog_facility %>
+LogLevel <%= @syslog_level %>
 
 # Authentication:
 LoginGraceTime 120
@@ -36,6 +36,13 @@ AuthorizedKeysFile <%= @authorized_keys_file.flatten[0] %>
 <%- else -%>
 AuthorizedKeysFile <%= @authorized_keys_file.flatten.join(" ") %>
 <%- end -%>
+<%- end -%>
+
+<%- if @authorized_keys_command? -%>
+AuthorizedKeysCommand <%= @@authorized_keys_command %>
+<%- end -%>
+<%- if @authorized_keys_command_user? -%>
+AuthorizedKeysCommandUser <%= @@authorized_keys_command_user %>
 <%- end -%>
 
 # Don't read the user's ~/.rhosts and ~/.shosts files
@@ -64,7 +71,7 @@ PasswordAuthentication <%= @password_authentication %>
 #KerberosTicketCleanup yes
 
 # GSSAPI options
-GSSAPIAuthentication no
+GSSAPIAuthentication <%= @gssapi_authentication %>
 #GSSAPICleanupCredentials yes
 
 X11Forwarding <%= @x11_forwarding %>
