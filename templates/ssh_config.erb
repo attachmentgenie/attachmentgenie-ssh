@@ -34,6 +34,7 @@ SendEnv LANG LC_*
 HashKnownHosts yes
 GSSAPIAuthentication yes
 GSSAPIDelegateCredentials no
+UseRoaming no
 
 <%- if @known_host_sssd != '' -%>
 GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts
