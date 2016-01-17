@@ -5,7 +5,7 @@ Port <%= @port %>
 # Use these options to restrict which interfaces/protocols sshd will bind to
 #ListenAddress ::
 #ListenAddress 0.0.0.0
-<%- if @address_family != '' -%>
+<%- if @address_family -%>
 AddressFamily <%= @address_family %>
 <%- end -%>
 Protocol 2
@@ -41,10 +41,10 @@ AuthorizedKeysFile <%= @authorized_keys_file.flatten.join(" ") %>
 <%- end -%>
 <%- end -%>
 
-<%- if @authorized_keys_command != '' -%>
+<%- if @authorized_keys_command -%>
 AuthorizedKeysCommand <%= @authorized_keys_command %>
 <%- end -%>
-<%- if @authorized_keys_command_user != '' -%>
+<%- if @authorized_keys_command_user -%>
 AuthorizedKeysCommandUser <%= @authorized_keys_command_user %>
 <%- end -%>
 

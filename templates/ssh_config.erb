@@ -36,7 +36,7 @@ GSSAPIAuthentication yes
 GSSAPIDelegateCredentials no
 UseRoaming no
 
-<%- if @known_host_sssd != '' -%>
+<%- if @known_host_sssd -%>
 GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts
 ProxyCommand /usr/bin/sss_ssh_knownhostsproxy -p %p %h
 <%- end -%>
