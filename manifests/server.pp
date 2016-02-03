@@ -44,7 +44,7 @@ class ssh::server (
     require => Package['openssh-server'],
     owner   => root,
     group   => root,
-    mode    => '0644'
+    mode    => '0600'
   }
 
   if str2bool($manage_service) {
