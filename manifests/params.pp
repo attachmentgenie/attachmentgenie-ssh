@@ -37,7 +37,6 @@ class ssh::params {
   $use_pam                         = 'yes'
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
-  $server_key_bits                 = '1024'
   $kex_algorithms                  = []
 
   case $::osfamily {
