@@ -1,14 +1,18 @@
 class ssh::server (
   $accept_env                     = $::ssh::params::accept_env,
+  $address_family                 = $::ssh::params::address_family,
   $allowed_users                  = $::ssh::params::allowed_users,
   $allowed_groups                 = $::ssh::params::allowed_groups,
   $authorized_keys_file           = $::ssh::params::authorized_keys_file,
+  $authorized_keys_command        = $::ssh::params::authorized_keys_command,
+  $authorized_keys_command_user   = $::ssh::params::authorized_keys_command_user,
   $banner_file                    = $::ssh::params::banner_file,
   $banner_manage                  = $::ssh::params::banner_manage,
   $banner_template                = $::ssh::params::banner_template,
   $ciphers                        = $::ssh::params::ciphers,
   $client_alive_interval          = $::ssh::params::client_alive_interval,
   $client_alive_count_max         = $::ssh::params::client_alive_count_max,
+  $gssapi_authentication          = $::ssh::params::gssapi_authentication,
   $host_keys                      = $::ssh::params::host_keys,
   $macs                           = $::ssh::params::macs,
   $manage_service                 = $::ssh::params::manage_service,
@@ -22,7 +26,10 @@ class ssh::server (
   $gateway_ports                  = $::ssh::params::gateway_ports,
   $print_motd                     = $::ssh::params::print_motd,
   $pubkey_authentication          = $::ssh::params::pubkey_authentication,
+  $server_key_bits                = $::ssh::params::server_key_bits,
   $subsystem_sftp                 = $::ssh::params::subsystem_sftp,
+  $syslog_facility                = $::ssh::params::syslog_facility,
+  $syslog_level                   = $::ssh::params::syslog_level,
   $template                       = $::ssh::params::server_config_template,
   $use_dns                        = $::ssh::params::use_dns,
   $use_pam                        = $::ssh::params::use_pam,
@@ -39,7 +46,7 @@ class ssh::server (
     require => Package['openssh-server'],
     owner   => root,
     group   => root,
-    mode    => '0644'
+    mode    => '0600'
   }
 
   if str2bool($manage_service) {
