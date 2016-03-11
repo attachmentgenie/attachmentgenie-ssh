@@ -21,7 +21,7 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with(
       'owner'  => 'root',
       'group'  => 'root',
-      'mode'   => '0644'
+      'mode'   => '0600'
       )
     }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_rsa_key$} }
@@ -58,7 +58,7 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with(
       'owner'  => 'root',
       'group'  => 'root',
-      'mode'   => '0644'
+      'mode'   => '0600'
       )
     }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_rsa_key$} }
