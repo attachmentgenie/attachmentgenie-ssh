@@ -45,7 +45,12 @@ AuthorizedKeysFile <%= @authorized_keys_file.flatten.join(" ") %>
 AuthorizedKeysCommand <%= @authorized_keys_command %>
 <%- end -%>
 <%- if @authorized_keys_command_user -%>
+<%- if @osfamily == 'RedHat' and @lsbmajdistrelease == '6' -%>
+<%# RedHat 6 has openssh-5.3, and it uses AuthorizedKeysCommandRunAs %>
+AuthorizedKeysCommandRunAs <%= @authorized_keys_command_user %>
+<%- else -%>
 AuthorizedKeysCommandUser <%= @authorized_keys_command_user %>
+<%- end -%>
 <%- end -%>
 
 # Don't read the user's ~/.rhosts and ~/.shosts files
