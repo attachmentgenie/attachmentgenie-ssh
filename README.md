@@ -72,6 +72,19 @@ for effortless authentication with ssh:
       comment => 'uggedal.com',
     }
 
+You can now manage PermitTTY for users as well:
+
+    class { 'ssh::server':
+      options => {
+        'Match User simona' => {
+          'PermitTTY' => 'no',
+        },
+        'Match User billy' => {
+          'PermitTTY' => 'yes',
+        }
+      }
+    }
+
 ##Reference
 
 ###Classes
@@ -107,6 +120,14 @@ Default value:[],
 Default value:[],
 
 ####`password_authentication_users`
+
+Default value:[],
+
+####`permittty_no_users`
+
+Default value:[],
+
+####`permittty_yes_users`
 
 Default value:[],
 
