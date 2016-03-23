@@ -20,6 +20,8 @@ class ssh::server (
   $password_authentication        = $::ssh::params::password_authentication,
   $password_authentication_groups = $::ssh::params::password_authentication_groups,
   $password_authentication_users  = $::ssh::params::password_authentication_users,
+  $permittty_no_users             = $::ssh::params::permittty_no_users,
+  $permittty_yes_users            = $::ssh::params::permittty_yes_users,
   $permit_root_login              = $::ssh::params::permit_root_login,
   $permit_tunnel                  = $::ssh::params::permit_tunnel,
   $permit_user_environment        = $::ssh::params::permit_user_environment,
