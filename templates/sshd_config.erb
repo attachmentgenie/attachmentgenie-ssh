@@ -133,6 +133,20 @@ Match User <%= val %>
 <% end -%>
 <% end -%>
 
+<% if @permittty_no_users.any? -%>
+<% @permittty_no_users.each do |val| -%>
+Match User <%= val %>
+    PermitTTY no
+<% end -%>
+<% end -%>
+
+<% if @permittty_yes_users.any? -%>
+<% @permittty_yes_users.each do |val| -%>
+Match User <%= val %>
+    PermitTTY yes
+<% end -%>
+<% end -%>
+
 PermitTunnel <%= @permit_tunnel %>
 
 GatewayPorts <%= @gateway_ports %>
