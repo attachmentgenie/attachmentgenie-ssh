@@ -48,7 +48,8 @@ describe 'ssh::server', :type => :class do
         :macs                   => ['hmac-sha1','hmac-ripemd160'],
         :gateway_ports          => 'clientspecified',
         :client_alive_interval  => '30',
-        :client_alive_count_max => '5'
+        :client_alive_count_max => '5',
+        :permit_tty             => 'no'
       }
     end
     it { is_expected.to contain_package("openssh-server").with(
@@ -70,5 +71,6 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^ClientAliveInterval 30$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^ClientAliveCountMax 5$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^GatewayPorts clientspecified$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^PermitTTY no$} }
   end
 end

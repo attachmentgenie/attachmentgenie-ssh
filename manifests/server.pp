@@ -22,6 +22,7 @@ class ssh::server (
   $password_authentication_users  = $::ssh::params::password_authentication_users,
   $permit_root_login              = $::ssh::params::permit_root_login,
   $permit_tunnel                  = $::ssh::params::permit_tunnel,
+  $permit_tty                     = $::ssh::params::permit_tty,
   $permit_user_environment        = $::ssh::params::permit_user_environment,
   $gateway_ports                  = $::ssh::params::gateway_ports,
   $print_motd                     = $::ssh::params::print_motd,
@@ -35,6 +36,8 @@ class ssh::server (
   $use_pam                        = $::ssh::params::use_pam,
   $x11_forwarding                 = $::ssh::params::x11_forwarding,
 ) inherits ssh::params {
+  validate_re( $permit_tty, 'yes|no' )
+
   package { 'openssh-server':
     ensure => present,
   }
