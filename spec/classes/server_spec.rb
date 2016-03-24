@@ -27,6 +27,7 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_rsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_dsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Banner /etc/issue.net$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^PermitTTY yes$} }
   end
   context "on a Debian OS 7" do
     let :facts do
@@ -43,13 +44,15 @@ describe 'ssh::server', :type => :class do
     end
     let :params do
       {
-        :banner_file            => '/etc/banner.txt',
-        :ciphers                => ['aes128-ctr','aes192-ctr','aes256-ctr','arcfour256','arcfour128'],
-        :macs                   => ['hmac-sha1','hmac-ripemd160'],
-        :gateway_ports          => 'clientspecified',
-        :client_alive_interval  => '30',
-        :client_alive_count_max => '5',
-        :permit_tty             => 'no'
+        :banner_file                   => '/etc/banner.txt',
+        :ciphers                       => ['aes128-ctr','aes192-ctr','aes256-ctr','arcfour256','arcfour128'],
+        :macs                          => ['hmac-sha1','hmac-ripemd160'],
+        :gateway_ports                 => 'clientspecified',
+        :client_alive_interval         => '30',
+        :client_alive_count_max        => '5',
+        :permit_tty                    => 'no',
+        :password_authentication_users => ['foo'],
+        :permit_tty_users              => {'bar' => 'no'},
       }
     end
     it { is_expected.to contain_package("openssh-server").with(
@@ -72,5 +75,7 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^ClientAliveCountMax 5$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^GatewayPorts clientspecified$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^PermitTTY no$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Match User foo$} }
+    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Match User bar$} }
   end
 end

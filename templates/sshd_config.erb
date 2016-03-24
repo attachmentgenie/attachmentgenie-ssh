@@ -119,6 +119,10 @@ AllowUsers <%= @allowed_users.join(" ") %>
 AllowGroups <%= @allowed_groups.join(" ") %>
 <% end -%>
 
+PermitTunnel <%= @permit_tunnel %>
+GatewayPorts <%= @gateway_ports %>
+PermitUserEnvironment <%= @permit_user_environment %>
+
 <% if @password_authentication_groups.any? -%>
 <% @password_authentication_groups.each do |val| -%>
 Match Group <%= val %>
@@ -126,17 +130,18 @@ Match Group <%= val %>
 <% end -%>
 <% end -%>
 
-<% if @password_authentication_users.any? -%>
-<% @password_authentication_users.each do |val| -%>
-Match User <%= val %>
+<% if @match_users.any? -%>
+<% @match_users.each do |match_user| -%>
+Match User <%= match_user %>
+<% @password_authentication_users.each do |password_authentication_user| -%>
+<% if password_authentication_user == match_user -%>
     PasswordAuthentication yes
 <% end -%>
 <% end -%>
-
-PermitTunnel <%= @permit_tunnel %>
-
-PermitTTY <%= @permit_tty %>
-
-GatewayPorts <%= @gateway_ports %>
-
-PermitUserEnvironment <%= @permit_user_environment %>
+<% @permit_tty_users.each do |permit_tty_user, permit_tty| -%>
+<% if permit_tty_user == match_user -%>
+    PermitTTY <%= permit_tty %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>

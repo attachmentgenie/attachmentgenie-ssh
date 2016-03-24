@@ -27,6 +27,7 @@ class ssh::params {
   $permit_root_login               = 'no'
   $permit_tunnel                   = 'no'
   $permit_tty                      = 'yes'
+  $permit_tty_users                = {}
   $permit_user_environment         = 'no'
   $port                            = '22'
   $print_motd                      = 'no'

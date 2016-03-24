@@ -138,6 +138,15 @@ Default value:yes',
 
 Default value:no',
 
+####`permit_tty`
+
+Default value:yes',
+
+####`permit_tty_users`
+Will only work for openssh > 6.6
+
+Default value:{}',
+
 ####`print_motd `
 
 Default value: $ssh::params::print_motd,
