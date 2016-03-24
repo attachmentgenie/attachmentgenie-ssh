@@ -23,6 +23,8 @@ class ssh::params {
   $macs                            = []
   $password_authentication_groups  = []
   $password_authentication_users   = []
+  $permittty_no_users              = []
+  $permittty_yes_users             = []
   $password_authentication         = 'no'
   $permit_root_login               = 'no'
   $permit_tunnel                   = 'no'
