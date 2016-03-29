@@ -20,6 +20,11 @@ UsePrivilegeSeparation yes
 KeyRegenerationInterval 3600
 ServerKeyBits <%= @server_key_bits %>
 
+# Key exchange algorithm
+<% if @kex_algorithms.any? -%>
+KexAlgorithms <%= @kex_algorithms.join(',') %>
+<% end -%>
+
 # Logging
 SyslogFacility <%= @syslog_facility %>
 LogLevel <%= @syslog_level %>
