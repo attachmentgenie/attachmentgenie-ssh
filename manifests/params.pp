@@ -39,6 +39,7 @@ class ssh::params {
   $use_pam                         = 'yes'
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
+  $match                           = {}
   case $::osfamily {
     'Debian': {
       $subsystem_sftp  = '/usr/lib/openssh/sftp-server'

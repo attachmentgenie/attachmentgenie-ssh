@@ -183,6 +183,23 @@ Default value:undef,
 
 Default value:undef,
 
+####`match`
+
+Default value: {}
+
+```
+# Example
+ssh::server::match:
+  user:
+    john:
+      AllowTcpForwarding: 'yes'
+  group:
+    sftp:
+      ChrootDirectory:    '%h'
+      ForceCommand:       'internal-sftp'
+      AllowTcpForwarding: 'no'
+```
+
 ####`template`
 
 Default value:ssh/sshd_config.erb',
