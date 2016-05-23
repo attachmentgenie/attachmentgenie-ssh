@@ -67,6 +67,16 @@ class ssh::params {
         }
       }
     }
+    'RedHat': {
+      case $::operatingsystemrelease {
+        /^7.*/: {
+          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key','/etc/ssh/ssh_host_ed25519_key']
+        }
+        default : {
+          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+        }
+      }
+    }
     default : {
       $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
     }

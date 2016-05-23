@@ -26,6 +26,7 @@ class ssh::server (
   $permit_tty                     = $::ssh::params::permit_tty,
   $permit_tty_users               = $::ssh::params::permit_tty_users,
   $permit_user_environment        = $::ssh::params::permit_user_environment,
+  $port                           = $::ssh::params::port,
   $gateway_ports                  = $::ssh::params::gateway_ports,
   $print_motd                     = $::ssh::params::print_motd,
   $pubkey_authentication          = $::ssh::params::pubkey_authentication,
