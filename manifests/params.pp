@@ -15,6 +15,7 @@ class ssh::params {
   $client_enable_ssh_key_sign      = 'yes'
   $client_forward_agent            = 'no'
   $client_hostbased_authentication = 'no'
+  $deny_groups                     = []
   $gateway_ports                   = 'no'
   $gssapi_authentication           = 'no'
   $known_host_sssd                 = undef

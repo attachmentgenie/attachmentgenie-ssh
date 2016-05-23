@@ -102,6 +102,10 @@ ClientAliveInterval <%= @client_alive_interval %>
 ClientAliveCountMax <%= @client_alive_count_max %>
 <% end -%>
 
+<% if @max_auth_retries -%>
+MaxAuthTries <%= @max_auth_retries %>
+<% end -%>
+
 <% if @ciphers.any? -%>
 Ciphers <%= @ciphers.join(",") %>
 <% end -%>
@@ -122,6 +126,10 @@ AllowUsers <%= @allowed_users.join(" ") %>
 <% end %>
 <% if @allowed_groups.any? -%>
 AllowGroups <%= @allowed_groups.join(" ") %>
+<% end -%>
+
+<% if @deny_groups -%>
+DenyGroups <%= @deny_groups.join(" ") %>
 <% end -%>
 
 PermitTTY <%= @permit_tty %>
