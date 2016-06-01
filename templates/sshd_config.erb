@@ -73,14 +73,15 @@ ChallengeResponseAuthentication no
 PasswordAuthentication <%= @password_authentication %>
 
 # Kerberos options
-#KerberosAuthentication no
+KerberosAuthentication <%= @kerberos_authentication %>
 #KerberosGetAFSToken no
 #KerberosOrLocalPasswd yes
 #KerberosTicketCleanup yes
 
 # GSSAPI options
 GSSAPIAuthentication <%= @gssapi_authentication %>
-#GSSAPICleanupCredentials yes
+GSSAPIKeyExchange <%= @gssapi_keyexchange %>
+GSSAPICleanupCredentials <%= @gssapi_cleanupcredentials %>
 
 X11Forwarding <%= @x11_forwarding %>
 X11DisplayOffset 10
