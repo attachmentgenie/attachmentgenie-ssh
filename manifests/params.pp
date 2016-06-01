@@ -18,6 +18,9 @@ class ssh::params {
   $deny_groups                     = []
   $gateway_ports                   = 'no'
   $gssapi_authentication           = 'no'
+  $gssapi_keyexchange              = 'no'
+  $gssapi_cleanupcredentials       = 'yes'
+  $kerberos_authentication         = 'no'
   $known_host_sssd                 = undef
   $manage_service                  = true
   $max_auth_retries                = 6
