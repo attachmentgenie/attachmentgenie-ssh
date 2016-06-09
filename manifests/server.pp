@@ -9,6 +9,7 @@ class ssh::server (
   $banner_file                    = $::ssh::params::banner_file,
   $banner_manage                  = $::ssh::params::banner_manage,
   $banner_template                = $::ssh::params::banner_template,
+  $compression                    = $::ssh::params::compression,
   $ciphers                        = $::ssh::params::ciphers,
   $client_alive_interval          = $::ssh::params::client_alive_interval,
   $client_alive_count_max         = $::ssh::params::client_alive_count_max,
