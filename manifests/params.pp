@@ -8,6 +8,7 @@ class ssh::params {
   $authorized_keys_command_user    = undef
   $banner_manage                   = true
   $banner_template                 = 'ssh/issue.erb'
+  $compression                     = undef
   $ciphers                         = []
   $client_alive_interval           = undef
   $client_alive_count_max          = undef
