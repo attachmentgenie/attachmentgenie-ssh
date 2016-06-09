@@ -96,6 +96,11 @@ UseDNS <%= @use_dns %>
 Banner <%= @banner_file %>
 <% end -%>
 
+<% if @compression -%>
+Compression <%= @compression %>
+<% end -%>
+
+
 <% if @client_alive_interval -%>
 ClientAliveInterval <%= @client_alive_interval %>
 <% end -%>
