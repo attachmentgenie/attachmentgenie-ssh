@@ -138,7 +138,10 @@ AllowGroups <%= @allowed_groups.join(" ") %>
 DenyGroups <%= @deny_groups.join(" ") %>
 <% end -%>
 
+<% if @permit_tty %>
 PermitTTY <%= @permit_tty %>
+<% end -%>
+
 PermitTunnel <%= @permit_tunnel %>
 GatewayPorts <%= @gateway_ports %>
 PermitUserEnvironment <%= @permit_user_environment %>

@@ -45,7 +45,9 @@ class ssh::server (
   $x11_forwarding                 = $::ssh::params::x11_forwarding,
   $match                          = $::ssh::params::match
 ) inherits ssh::params {
-  validate_re( $permit_tty, 'yes|no' )
+  if $permit_tty {
+    validate_re( $permit_tty, 'yes|no' )
+  }
 
   $match_users = union($password_authentication_users, keys($permit_tty_users))
 
