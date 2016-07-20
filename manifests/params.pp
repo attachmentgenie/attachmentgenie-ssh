@@ -26,6 +26,7 @@ class ssh::params {
   $manage_service                  = true
   $max_auth_retries                = 6
   $macs                            = []
+  $package                         = "present"
   $password_authentication_groups  = []
   $password_authentication_users   = []
   $password_authentication         = 'no'

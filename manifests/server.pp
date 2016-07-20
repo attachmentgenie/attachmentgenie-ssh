@@ -1,4 +1,5 @@
 class ssh::server (
+  $package                        = $::ssh::params::package,
   $accept_env                     = $::ssh::params::accept_env,
   $address_family                 = $::ssh::params::address_family,
   $allowed_users                  = $::ssh::params::allowed_users,
@@ -49,7 +50,7 @@ class ssh::server (
   $match_users = union($password_authentication_users, keys($permit_tty_users))
 
   package { 'openssh-server':
-    ensure => present,
+    ensure => $package,
   }
 
   file { '/etc/ssh/sshd_config':
