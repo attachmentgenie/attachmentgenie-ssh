@@ -24,6 +24,7 @@ class ssh::server (
   $manage_service                 = $::ssh::params::manage_service,
   $max_auth_retries               = $::ssh::params::max_auth_retries,
   $max_sessions                   = $::ssh::params::max_sessions,
+  $max_startups                   = $::ssh::params::max_startups,
   $password_authentication        = $::ssh::params::password_authentication,
   $password_authentication_groups = $::ssh::params::password_authentication_groups,
   $password_authentication_users  = $::ssh::params::password_authentication_users,
