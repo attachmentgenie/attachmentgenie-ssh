@@ -111,6 +111,9 @@ ClientAliveCountMax <%= @client_alive_count_max %>
 <% if @max_auth_retries -%>
 MaxAuthTries <%= @max_auth_retries %>
 <% end -%>
+<% if @max_sessions -%>
+MaxSessions <%= @max_sessions %>
+<% end -%>
 
 <% if @ciphers.any? -%>
 Ciphers <%= @ciphers.join(",") %>

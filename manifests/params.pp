@@ -25,6 +25,7 @@ class ssh::params {
   $known_host_sssd                 = undef
   $manage_service                  = true
   $max_auth_retries                = 6
+  $max_sessions                    = 10
   $macs                            = []
   $package                         = "present"
   $password_authentication_groups  = []
