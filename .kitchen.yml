@@ -12,6 +12,7 @@ verifier:
   inspec_tests:
     - https://github.com/dev-sec/tests-ssh-hardening
 platforms:
+- name: ubuntu-12.04
 - name: ubuntu-14.04
   provisioner:
     puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
