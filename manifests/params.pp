@@ -31,7 +31,8 @@ class ssh::params {
   $package                         = 'present'
   $password_authentication_groups  = []
   $password_authentication_users   = []
-  $password_authentication         = 'no'
+  $client_password_authentication  = 'no'
+  $server_password_authentication  = 'no'
   $permit_root_login               = 'no'
   $permit_tunnel                   = 'no'
   $permit_tty_users                = {}

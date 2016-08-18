@@ -4,37 +4,27 @@ Host *
 ForwardAgent <%= @forward_agent %>
 HostbasedAuthentication <%= @hostbased_authentication %>
 EnableSSHKeySign <%= @enable_ssh_key_sign %>
-#   ForwardX11 no
-#   RhostsRSAAuthentication no
-#   RSAAuthentication yes
-#   PasswordAuthentication yes
-#   GSSAPIAuthentication no
-#   GSSAPIDelegateCredentials no
-#   GSSAPIKeyExchange no
-#   GSSAPITrustDNS no
-#   BatchMode no
-#   CheckHostIP yes
-#   AddressFamily any
-#   ConnectTimeout 0
-#   StrictHostKeyChecking ask
-#   IdentityFile ~/.ssh/identity
-#   IdentityFile ~/.ssh/id_rsa
-#   IdentityFile ~/.ssh/id_dsa
-#   Port 22
-#   Protocol 2,1
-#   Cipher 3des
-#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc
-#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160
-#   EscapeChar ~
-#   Tunnel no
-#   TunnelDevice any:any
-#   PermitLocalCommand no
-#   VisualHostKey no
+ForwardX11 no
+RhostsRSAAuthentication no
+RSAAuthentication yes
+PasswordAuthentication <%= @password_authentication %>
+GSSAPIAuthentication no
+GSSAPIDelegateCredentials no
+BatchMode no
+CheckHostIP yes
+AddressFamily any
+StrictHostKeyChecking ask
+Port 22
+Protocol 2
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160
+Tunnel no
+PermitLocalCommand no
+UseRoaming no
+
 SendEnv LANG LC_*
 HashKnownHosts yes
-GSSAPIAuthentication yes
-GSSAPIDelegateCredentials no
-UseRoaming no
 
 <%- if @known_host_sssd -%>
 GlobalKnownHostsFile /var/lib/sss/pubconf/known_hosts

@@ -3,6 +3,7 @@ class ssh::client (
   $forward_agent            = $::ssh::params::client_forward_agent,
   $hostbased_authentication = $::ssh::params::client_hostbased_authentication,
   $known_host_sssd          = $::ssh::params::known_host_sssd,
+  $password_authentication  = $::ssh::params::client_password_authentication,
   $template                 = $::ssh::params::client_config_template,
 ) inherits ssh::params {
   case $::osfamily {
