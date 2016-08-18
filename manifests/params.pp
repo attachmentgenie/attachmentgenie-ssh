@@ -65,6 +65,7 @@ class ssh::params {
         }
         default : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $permit_tty     = undef
         }
       }
     }
@@ -83,6 +84,7 @@ class ssh::params {
         }
         default : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $permit_tty     = undef
         }
       }
     }
