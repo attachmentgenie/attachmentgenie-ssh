@@ -34,7 +34,6 @@ class ssh::params {
   $password_authentication         = 'no'
   $permit_root_login               = 'no'
   $permit_tunnel                   = 'no'
-  $permit_tty                      = 'yes'
   $permit_tty_users                = {}
   $permit_user_environment         = 'no'
   $port                            = '22'
@@ -58,12 +57,15 @@ class ssh::params {
       case $::operatingsystemrelease {
         /(7.*|12\.04.*)/ : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $permit_tty     = undef
         }
-        /(8.*|14\.04.*)/ : {
+        /(8.*|14\.04.*|16\.04.*)/ : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $permit_tty     = 'yes'
         }
         default : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $permit_tty     = undef
         }
       }
     }
@@ -74,12 +76,15 @@ class ssh::params {
       case $::operatingsystemrelease {
         /6.*/ : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $permit_tty     = undef
         }
         /7.*/ : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $permit_tty     = 'yes'
         }
         default : {
           $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $permit_tty     = undef
         }
       }
     }

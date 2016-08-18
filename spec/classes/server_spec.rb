@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'ssh::server', :type => :class do
-  context "on a Debian OS 6" do
+  context "on a Debian OS 7" do
     let :facts do
       {
         :id                     => 'root',
@@ -9,7 +9,7 @@ describe 'ssh::server', :type => :class do
         :lsbdistcodename        => 'squeeze',
         :osfamily               => 'Debian',
         :operatingsystem        => 'Debian',
-        :operatingsystemrelease => '6',
+        :operatingsystemrelease => '7.11',
         :path                   => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
         :concat_basedir         => '/dne',
       }
@@ -27,9 +27,9 @@ describe 'ssh::server', :type => :class do
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_rsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^HostKey /etc/ssh/ssh_host_dsa_key$} }
     it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^Banner /etc/issue.net$} }
-    it { is_expected.to contain_file("/etc/ssh/sshd_config").with_content %r{^PermitTTY yes$} }
+    it { is_expected.not_to contain_file("/etc/ssh/sshd_config").with_content %r{^PermitTTY yes$} }
   end
-  context "on a Debian OS 7" do
+  context "on a Debian OS 8" do
     let :facts do
       {
         :id                     => 'root',
@@ -37,7 +37,7 @@ describe 'ssh::server', :type => :class do
         :lsbdistcodename        => 'wheezy',
         :osfamily               => 'Debian',
         :operatingsystem        => 'Debian',
-        :operatingsystemrelease => '7',
+        :operatingsystemrelease => '8.5',
         :path                   => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
         :concat_basedir         => '/dne',
       }
