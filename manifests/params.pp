@@ -26,9 +26,9 @@ class ssh::params {
   $manage_service                  = true
   $max_auth_retries                = 6
   $max_sessions                    = 10
-  $max_startups                    = "10:30:100"
+  $max_startups                    = '10:30:100'
   $macs                            = []
-  $package                         = "present"
+  $package                         = 'present'
   $password_authentication_groups  = []
   $password_authentication_users   = []
   $password_authentication         = 'no'
@@ -48,44 +48,43 @@ class ssh::params {
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
   $match                           = {}
+  $kex_algorithms                  = []
+
   case $::osfamily {
     'Debian': {
       $subsystem_sftp  = '/usr/lib/openssh/sftp-server'
       $service_name = 'ssh'
       $banner_file  = '/etc/issue.net'
+      case $::operatingsystemrelease {
+        /(7.*|12\.04.*)/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+        }
+        /(8.*|14\.04.*)/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+        }
+        default : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+        }
+      }
     }
     'RedHat': {
       $subsystem_sftp  = '/usr/libexec/openssh/sftp-server'
       $service_name = 'sshd'
       $banner_file  = '/etc/issue'
+      case $::operatingsystemrelease {
+        /6.*/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+        }
+        /7.*/ : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+        }
+        default : {
+          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+        }
+      }
     }
     default: {
       fail("Unsupported osfamily ${::osfamily}, currently only supports Debian and RedHat")
-    }
-  }
-  case $::operatingsystem {
-    'Debian': {
-      case $::operatingsystemrelease {
-        /^[78].*$/ : {
-          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
-        }
-        default : {
-          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-        }
-      }
-    }
-    'RedHat': {
-      case $::operatingsystemrelease {
-        /^7.*/: {
-          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_ecdsa_key','/etc/ssh/ssh_host_ed25519_key']
-        }
-        default : {
-          $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-        }
-      }
-    }
-    default : {
-      $host_keys=['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
     }
   }
 }
