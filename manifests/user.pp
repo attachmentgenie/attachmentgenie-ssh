@@ -4,9 +4,7 @@ define ssh::user (
   $comment=''
 ) {
 
-  if $ensure == present {
-    File["/home/${name}"] -> Ssh_authorized_key["${name}@${comment}"]
-  } else {
+  if $ensure != present {
     Ssh_authorized_key["${name}@${comment}"] -> User[$name]
     Ssh_authorized_key["${name}@${comment}"] -> Group[$name]
   }
