@@ -1,4 +1,5 @@
 class ssh::server (
+  $package                        = $::ssh::params::package,
   $accept_env                     = $::ssh::params::accept_env,
   $address_family                 = $::ssh::params::address_family,
   $allowed_users                  = $::ssh::params::allowed_users,
@@ -22,6 +23,8 @@ class ssh::server (
   $macs                           = $::ssh::params::macs,
   $manage_service                 = $::ssh::params::manage_service,
   $max_auth_retries               = $::ssh::params::max_auth_retries,
+  $max_sessions                   = $::ssh::params::max_sessions,
+  $max_startups                   = $::ssh::params::max_startups,
   $password_authentication        = $::ssh::params::password_authentication,
   $password_authentication_groups = $::ssh::params::password_authentication_groups,
   $password_authentication_users  = $::ssh::params::password_authentication_users,
@@ -44,12 +47,14 @@ class ssh::server (
   $x11_forwarding                 = $::ssh::params::x11_forwarding,
   $match                          = $::ssh::params::match
 ) inherits ssh::params {
-  validate_re( $permit_tty, 'yes|no' )
+  if $permit_tty {
+    validate_re( $permit_tty, 'yes|no' )
+  }
 
   $match_users = union($password_authentication_users, keys($permit_tty_users))
 
   package { 'openssh-server':
-    ensure => present,
+    ensure => $package,
   }
 
   file { '/etc/ssh/sshd_config':
