@@ -16,9 +16,15 @@ AddressFamily any
 StrictHostKeyChecking ask
 Port 22
 Protocol 2
-Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
-KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
-MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160
+<% if @ciphers.any? -%>
+Ciphers <%= @ciphers.join(",") %>
+<% end -%>
+<% if @kex_algorithms.any? -%>
+KexAlgorithms <%= @kex_algorithms.join(',') %>
+<% end -%>
+<% if @macs.any? -%>
+MACs <%= @macs.join(",") %>
+<% end -%>
 Tunnel no
 PermitLocalCommand no
 UseRoaming no

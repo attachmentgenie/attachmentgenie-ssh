@@ -25,7 +25,7 @@ class ssh::server (
   $max_auth_retries               = $::ssh::params::max_auth_retries,
   $max_sessions                   = $::ssh::params::max_sessions,
   $max_startups                   = $::ssh::params::max_startups,
-  $password_authentication        = $::ssh::params::server_password_authentication,
+  $password_authentication        = $::ssh::params::password_authentication,
   $password_authentication_groups = $::ssh::params::password_authentication_groups,
   $password_authentication_users  = $::ssh::params::password_authentication_users,
   $permit_root_login              = $::ssh::params::permit_root_login,
@@ -47,6 +47,7 @@ class ssh::server (
   $x11_forwarding                 = $::ssh::params::x11_forwarding,
   $match                          = $::ssh::params::match,
   $kex_algorithms                 = $::ssh::params::kex_algorithms,
+  $use_privilege_separation       = $::ssh::params::use_privilege_separation
 ) inherits ssh::params {
   if $permit_tty {
     validate_re( $permit_tty, 'yes|no' )

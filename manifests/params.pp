@@ -1,6 +1,6 @@
 class ssh::params {
   $accept_env                      = 'LANG LC_*'
-  $address_family                  = undef
+  $address_family                  = 'any'
   $allowed_users                   = []
   $allowed_groups                  = []
   $authorized_keys_file            = ['%h/.ssh/authorized_keys']
@@ -9,9 +9,8 @@ class ssh::params {
   $banner_manage                   = true
   $banner_template                 = 'ssh/issue.erb'
   $compression                     = undef
-  $ciphers                         = []
-  $client_alive_interval           = undef
-  $client_alive_count_max          = undef
+  $client_alive_interval           = 600
+  $client_alive_count_max          = 3
   $client_config_template          = 'ssh/ssh_config.erb'
   $client_enable_ssh_key_sign      = 'yes'
   $client_forward_agent            = 'no'
@@ -24,15 +23,13 @@ class ssh::params {
   $kerberos_authentication         = 'no'
   $known_host_sssd                 = undef
   $manage_service                  = true
-  $max_auth_retries                = 6
+  $max_auth_retries                = 2
   $max_sessions                    = 10
   $max_startups                    = '10:30:100'
-  $macs                            = []
   $package                         = 'present'
   $password_authentication_groups  = []
   $password_authentication_users   = []
-  $client_password_authentication  = 'no'
-  $server_password_authentication  = 'no'
+  $password_authentication         = 'no'
   $permit_root_login               = 'no'
   $permit_tunnel                   = 'no'
   $permit_tty_users                = {}
@@ -43,12 +40,24 @@ class ssh::params {
   $server_config_template          = 'ssh/sshd_config.erb'
   $server_key_bits                 = '1024'
   $syslog_facility                 = 'AUTH'
-  $syslog_level                    = 'INFO'
-  $use_pam                         = 'yes'
+  $syslog_level                    = 'VERBOSE'
+  $use_pam                         = 'no'
   $use_dns                         = 'yes'
   $x11_forwarding                  = 'no'
   $match                           = {}
-  $kex_algorithms                  = []
+
+  $ciphers53 = ['aes256-ctr','aes192-ctr,aes128-ctr']
+  $ciphers66 = ['chacha20-poly1305@openssh.com','aes256-gcm@openssh.com','aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr']
+
+  $kex59 = ['diffie-hellman-group-exchange-sha256']
+  $kex66 = ['curve25519-sha256@libssh.org','diffie-hellman-group-exchange-sha256']
+
+  $macs53 = ['hmac-ripemd160,hmac-sha1']
+  $macs59 = ['hmac-sha2-512','hmac-sha2-256,hmac-ripemd160']
+  $macs66 = ['hmac-sha2-512-etm@openssh.com','hmac-sha2-256-etm@openssh.com','hmac-ripemd160-etm@openssh.com','umac-128-etm@openssh.com','hmac-sha2-512,hmac-sha2-256','hmac-ripemd160']
+
+  $ps53 = 'yes'
+  $ps59 = 'sandbox'
 
   case $::osfamily {
     'Debian': {
@@ -57,16 +66,28 @@ class ssh::params {
       $banner_file  = '/etc/issue.net'
       case $::operatingsystemrelease {
         /(7.*|12\.04.*)/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
-          $permit_tty     = undef
+          $ciphers                  = $ciphers53
+          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $kex_algorithms           = $kex59
+          $macs                     = $macs59
+          $permit_tty               = undef
+          $use_privilege_separation = $ps59
         }
         /(8.*|14\.04.*|16\.04.*)/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
-          $permit_tty     = 'yes'
+          $ciphers                  = $ciphers66
+          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $kex_algorithms           = $kex66
+          $macs                     = $macs66
+          $permit_tty               = 'yes'
+          $use_privilege_separation = $ps59
         }
         default : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-          $permit_tty     = undef
+          $ciphers                  = $ciphers53
+          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $kex_algorithms           = []
+          $macs                     = $macs59
+          $permit_tty               = undef
+          $use_privilege_separation = $ps59
         }
       }
     }
@@ -76,16 +97,28 @@ class ssh::params {
       $banner_file  = '/etc/issue'
       case $::operatingsystemrelease {
         /6.*/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-          $permit_tty     = undef
+          $ciphers                  = $ciphers53
+          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $kex_algorithms           = []
+          $macs                     = $macs53
+          $permit_tty               = undef
+          $use_privilege_separation = $ps53
         }
         /7.*/ : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
-          $permit_tty     = 'yes'
+          $ciphers                  = $ciphers66
+          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $kex_algorithms           = $kex66
+          $macs                     = $macs66
+          $permit_tty               = 'yes'
+          $use_privilege_separation = $ps59
         }
         default : {
-          $host_keys      = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-          $permit_tty     = undef
+          $ciphers                  = $ciphers53
+          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $kex_algorithms           = $kex66
+          $macs                     = $macs59
+          $permit_tty               = undef
+          $use_privilege_separation = $ps59
         }
       }
     }

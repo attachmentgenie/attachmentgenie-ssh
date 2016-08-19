@@ -1,20 +1,23 @@
 # Managed by Puppet
 
+AllowAgentForwarding no
+AllowTcpForwarding no
+
 # What ports, IPs and protocols we listen for
 Port <%= @port %>
 # Use these options to restrict which interfaces/protocols sshd will bind to
-#ListenAddress ::
-#ListenAddress 0.0.0.0
 <%- if @address_family -%>
 AddressFamily <%= @address_family %>
 <%- end -%>
+ListenAddress 0.0.0.0
 Protocol 2
+
 # HostKeys for protocol version 2
 <% @host_keys.each do |key| -%>
 HostKey <%= key %>
 <% end -%>
 #Privilege Separation is turned on for security
-UsePrivilegeSeparation yes
+UsePrivilegeSeparation <%= @use_privilege_separation %>
 
 # Lifetime and size of ephemeral version 1 server key
 KeyRegenerationInterval 3600
@@ -30,7 +33,7 @@ SyslogFacility <%= @syslog_facility %>
 LogLevel <%= @syslog_level %>
 
 # Authentication:
-LoginGraceTime 120
+LoginGraceTime 30s
 PermitRootLogin <%= @permit_root_login %>
 StrictModes yes
 
@@ -65,7 +68,7 @@ RhostsRSAAuthentication no
 # similar for protocol version 2
 HostbasedAuthentication no
 # Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication
-#IgnoreUserKnownHosts yes
+IgnoreUserKnownHosts yes
 
 # To enable empty passwords, change to yes (NOT RECOMMENDED)
 PermitEmptyPasswords no
@@ -80,20 +83,21 @@ PasswordAuthentication <%= @password_authentication %>
 # Kerberos options
 KerberosAuthentication <%= @kerberos_authentication %>
 #KerberosGetAFSToken no
-#KerberosOrLocalPasswd yes
-#KerberosTicketCleanup yes
+KerberosOrLocalPasswd no
+KerberosTicketCleanup yes
 
 # GSSAPI options
 GSSAPIAuthentication <%= @gssapi_authentication %>
 GSSAPIKeyExchange <%= @gssapi_keyexchange %>
 GSSAPICleanupCredentials <%= @gssapi_cleanupcredentials %>
 
+X11UseLocalhost yes
 X11Forwarding <%= @x11_forwarding %>
 X11DisplayOffset 10
 PrintMotd <%= @print_motd %>
-PrintLastLog yes
-TCPKeepAlive yes
-#UseLogin no
+PrintLastLog no
+TCPKeepAlive no
+UseLogin no
 UseDNS <%= @use_dns %>
 
 <% if @banner_file -%>
