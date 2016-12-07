@@ -2,41 +2,26 @@
 
 AllowAgentForwarding no
 AllowTcpForwarding no
-
-# What ports, IPs and protocols we listen for
 Port <%= @port %>
-# Use these options to restrict which interfaces/protocols sshd will bind to
 <%- if @address_family -%>
 AddressFamily <%= @address_family %>
 <%- end -%>
 ListenAddress 0.0.0.0
 Protocol 2
-
-# HostKeys for protocol version 2
 <% @host_keys.each do |key| -%>
 HostKey <%= key %>
 <% end -%>
-#Privilege Separation is turned on for security
 UsePrivilegeSeparation <%= @use_privilege_separation %>
-
-# Lifetime and size of ephemeral version 1 server key
 KeyRegenerationInterval 3600
 ServerKeyBits <%= @server_key_bits %>
-
-# Key exchange algorithm
 <% if @kex_algorithms.any? -%>
 KexAlgorithms <%= @kex_algorithms.join(',') %>
 <% end -%>
-
-# Logging
 SyslogFacility <%= @syslog_facility %>
 LogLevel <%= @syslog_level %>
-
-# Authentication:
 LoginGraceTime 30s
 PermitRootLogin <%= @permit_root_login %>
 StrictModes yes
-
 RSAAuthentication yes
 PubkeyAuthentication <%= @pubkey_authentication %>
 <%- if @authorized_keys_file.any? -%>
@@ -48,7 +33,6 @@ AuthorizedKeysFile <%= @authorized_keys_file.flatten[0] %>
 AuthorizedKeysFile <%= @authorized_keys_file.flatten.join(" ") %>
 <%- end -%>
 <%- end -%>
-
 <%- if @authorized_keys_command -%>
 AuthorizedKeysCommand <%= @authorized_keys_command %>
 <%- end -%>
@@ -60,37 +44,19 @@ AuthorizedKeysCommandRunAs <%= @authorized_keys_command_user %>
 AuthorizedKeysCommandUser <%= @authorized_keys_command_user %>
 <%- end -%>
 <%- end -%>
-
-# Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts yes
-# For this to work you will also need host keys in /etc/ssh_known_hosts
 RhostsRSAAuthentication no
-# similar for protocol version 2
 HostbasedAuthentication no
-# Uncomment if you don't trust ~/.ssh/known_hosts for RhostsRSAAuthentication
 IgnoreUserKnownHosts yes
-
-# To enable empty passwords, change to yes (NOT RECOMMENDED)
 PermitEmptyPasswords no
-
-# Change to yes to enable challenge-response passwords (beware issues with
-# some PAM modules and threads)
 ChallengeResponseAuthentication no
-
-# Change to no to disable tunnelled clear text passwords
 PasswordAuthentication <%= @password_authentication %>
-
-# Kerberos options
 KerberosAuthentication <%= @kerberos_authentication %>
-#KerberosGetAFSToken no
 KerberosOrLocalPasswd no
 KerberosTicketCleanup yes
-
-# GSSAPI options
 GSSAPIAuthentication <%= @gssapi_authentication %>
 GSSAPIKeyExchange <%= @gssapi_keyexchange %>
 GSSAPICleanupCredentials <%= @gssapi_cleanupcredentials %>
-
 X11UseLocalhost yes
 X11Forwarding <%= @x11_forwarding %>
 X11DisplayOffset 10
@@ -99,23 +65,18 @@ PrintLastLog no
 TCPKeepAlive no
 UseLogin no
 UseDNS <%= @use_dns %>
-
 <% if @banner_file -%>
 Banner <%= @banner_file %>
 <% end -%>
-
 <% if @compression -%>
 Compression <%= @compression %>
 <% end -%>
-
-
 <% if @client_alive_interval -%>
 ClientAliveInterval <%= @client_alive_interval %>
 <% end -%>
 <% if @client_alive_count_max -%>
 ClientAliveCountMax <%= @client_alive_count_max %>
 <% end -%>
-
 <% if @max_startups -%>
 MaxStartups <%= @max_startups %>
 <% end -%>
@@ -125,48 +86,36 @@ MaxAuthTries <%= @max_auth_retries %>
 <% if @max_sessions -%>
 MaxSessions <%= @max_sessions %>
 <% end -%>
-
 <% if @ciphers.any? -%>
 Ciphers <%= @ciphers.join(",") %>
 <% end -%>
-
 <% if @macs.any? -%>
 MACs <%= @macs.join(",") %>
 <% end -%>
-
-# Allow setting environment variables
 AcceptEnv <%= @accept_env %>
-
-#Subsystem sftp /usr/lib/openssh/sftp-server
 Subsystem sftp <%= @subsystem_sftp %>
 UsePAM <%= @use_pam %>
-
 <% if @allowed_users.any? %>
 AllowUsers <%= @allowed_users.join(" ") %>
 <% end %>
 <% if @allowed_groups.any? -%>
 AllowGroups <%= @allowed_groups.join(" ") %>
 <% end -%>
-
 <% if @deny_groups -%>
 DenyGroups <%= @deny_groups.join(" ") %>
 <% end -%>
-
 <% if @permit_tty %>
 PermitTTY <%= @permit_tty %>
 <% end -%>
-
 PermitTunnel <%= @permit_tunnel %>
 GatewayPorts <%= @gateway_ports %>
 PermitUserEnvironment <%= @permit_user_environment %>
-
 <% if @password_authentication_groups.any? -%>
 <% @password_authentication_groups.each do |val| -%>
 Match Group <%= val %>
     PasswordAuthentication yes
 <% end -%>
 <% end -%>
-
 <% if @match_users.any? -%>
 <% @match_users.each do |match_user| -%>
 Match User <%= match_user %>
@@ -182,7 +131,6 @@ Match User <%= match_user %>
 <% end -%>
 <% end -%>
 <% end -%>
-
 <% if @match.any? -%>
 <% @match.each do |criteria, patterns| -%>
 <% patterns.each do |pattern, config| -%>

@@ -38,7 +38,9 @@ The `ssh::client` class installs the ssh client:
 
 The `ssh::server` class installs and configures the sshd:
 
-    class { 'ssh::server': }
+    class { 'ssh::server':
+      password_authentication => 'yes',
+    }
     
 ##Usage
 
@@ -78,149 +80,9 @@ for effortless authentication with ssh:
 
 ####Public Classes
 
-* ssh:         Class is not used and will throw a notice.
 * ssh::server: Class that installs and configures a ssh server.
 * ssh::client: Class that installs and configures a ssh client.
 * ssh::user:   Class to add ssh keys to existing users.
-
-###Parameters
-
-The following parameters are available in the `ssh::server` class:
-
-####`zone`
-
-Set what ssh to use on this node. Default value: 'UTC'
-####`port`
-
-Default value:22',
-
-####`allowed_users`
-
-Default value:[],
-
-####`allowed_groups`
-
-Default value:[],
-
-####`password_authentication_groups`
-
-Default value:[],
-
-####`password_authentication_users`
-
-Default value:[],
-
-####`x11_forwarding`
-
-Default value:no',
-
-####`use_dns`
-
-Default value:yes',
-
-####`password_authentication`
-
-Default value:no',
-
-####`pubkey_authentication`
-
-Default value:yes',
-
-####`subsystem_sftp`
-
-Default value:/usr/lib/openssh/sftp-server',
-
-####`use_pam`
-
-Default value:yes',
-
-####`permit_root_login`
-
-Default value:no',
-
-####`permit_tty`
-
-Default value:yes',
-
-####`permit_tty_users`
-Will only work for openssh > 6.6
-
-Default value:{}',
-
-####`print_motd `
-
-Default value: $ssh::params::print_motd,
-
-####`host_keys`
-
-Default value:$ssh::params::host_keys,
-
-####`manage_service`
-
-Default value:true,
-
-####`ServerKeyBits`
-
-Default value:1024,
-
-####`banner`
-
-Default value:/etc/issue.net',
-
-####`ciphers`
-
-Default value:[],
-
-####`macs`
-
-Default value:[],
-
-####`client_alive_interval`
-
-Default value:undef,
-
-####`client_alive_count_max`
-
-Default value:undef,
-
-####`match`
-
-Default value: {}
-
-```
-# Example
-ssh::server::match:
-  user:
-    john:
-      AllowTcpForwarding: 'yes'
-  group:
-    sftp:
-      ChrootDirectory:    '%h'
-      ForceCommand:       'internal-sftp'
-      AllowTcpForwarding: 'no'
-```
-
-####`template`
-
-Default value:ssh/sshd_config.erb',
-
-####`accept_env`
-
-Default value:LANG LC_*'
-
-The following parameters are available in the `ssh::server` class:
-
-####`key`
-
-ssh key to add to user.
-
-####`ensure`
-
-Default value: present
-
-####`comment`
-
-Comment to add to the ssh key. Default value: ''
 
 ##Limitations
 
