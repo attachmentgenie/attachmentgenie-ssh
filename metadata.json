@@ -1,6 +1,6 @@
 {
   "name": "attachmentgenie-ssh",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "author": "Bram Vogelaar <bram@attachmentgenie.com>",
   "summary": "Puppet ssh Module",
   "license": "MIT",
