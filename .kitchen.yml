@@ -27,7 +27,7 @@ platforms:
 - name: centos-6.8
   provisioner:
     puppet_yum_collections_repo: http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
-- name: centos-7.2
+- name: centos-7.3
   provisioner:
     puppet_yum_collections_repo: http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 suites:
