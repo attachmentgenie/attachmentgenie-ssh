@@ -47,7 +47,7 @@ with this special syntax:
 You can also restrict access for only certain users:
 
     class { 'ssh::server':
-      allowed_users => ['uggedal', 'manager'],
+      allowed_users => ['attachmentgenie', 'manager'],
     }
 
 And you can permit root logins (not recommended):
@@ -62,9 +62,9 @@ use something like ```sudo``` instead.
 You can use `ssh::user` to add an authorized ssh key to an existing user
 for effortless authentication with ssh:
 
-    ssh::user { 'uggedal':
+    ssh::user { 'attachmentgenie':
       key => 'a8a7dgf7ad8j13g',
-      comment => 'uggedal.com',
+      comment => 'attachmentgenie.com',
     }
 
 ##Development
