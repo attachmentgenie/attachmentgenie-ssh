@@ -131,10 +131,11 @@ class ssh::server (
     $match,
     $permit_tty_users,
   )
-  validate_integer($client_alive_count_max)
-  validate_integer($client_alive_interval)
-  validate_integer($max_auth_retries)
-  validate_integer($max_sessions)
+  validate_integer([
+    $client_alive_count_max,
+    $client_alive_interval,
+    $max_auth_retries,
+    $max_sessions])
   validate_string(
     $accept_env,
     $address_family,
