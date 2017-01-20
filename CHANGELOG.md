@@ -1,4 +1,4 @@
-# 21-09-2016 - Release 2.0.0
+# 17-01-2017 - Release 2.0.0
 
 - Adding more parameters to/for ssh_config
     - ciphers
