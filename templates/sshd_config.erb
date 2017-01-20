@@ -77,6 +77,9 @@ ClientAliveInterval <%= @client_alive_interval %>
 <% if @client_alive_count_max -%>
 ClientAliveCountMax <%= @client_alive_count_max %>
 <% end -%>
+<% if @debian_banner -%>
+DebianBanner <%= @debian_banner %>
+<% end -%>
 <% if @max_startups -%>
 MaxStartups <%= @max_startups %>
 <% end -%>

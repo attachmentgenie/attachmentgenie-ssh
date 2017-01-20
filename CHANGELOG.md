@@ -1,10 +1,11 @@
 # 21-09-2016 - Release 2.0.0
-- Adding more parameters to for ssh_config
+
+- Adding more parameters to/for ssh_config
     - ciphers
     - kex_algorithms
     - macs
     - password_authentication
-- Adding more parameters to for sshd_config
+- Adding more parameters to/for sshd_config
     - package
     - compression
     - deny_groups
@@ -17,9 +18,12 @@
     - kex_algorithms
     - use_privilege_separation
 - Moving to test kitchen for integration testing
-- Now implementing dev-sec.io ssh hardening standard (https ://github.com/dev-sec/tests-ssh-hardening)
-### Backward incompatible changes
-- Support for non LTS releases is no longer guaranteed
+- Now implementing dev-sec.io ssh hardening standard version 2.1.1 (https ://github.com/dev-sec/ssh-baseline)
+
+## Backward incompatible changes
+- Support for puppet 3 has been dropped.
+- Support for non LTS releases is no longer guaranteed.
+- Support is only guaranteed for the last 2 LTS versions (if applicable).
 - In order to pass the dev-sec.io ssh hardening standard several parameters/ssh_config defaults have been changed.
     - PasswordAuthentication : system default => no
     - GSSAPIAuthentication : system default => no
@@ -32,6 +36,7 @@
     - AllowTcpForwarding : system default => no
     - AddressFamily : system default => any
     - ListenAddress : system default => 0.0.0.0
+    - Banner : system defaukt => none
     - UsePrivilegeSeparation : yes => see params.pp
     - KexAlgorithms : system default => see params.pp
     - LoginGraceTime : 120 => 30s
@@ -49,6 +54,7 @@
     - MaxStartups : system default => 10:30:100
     - MaxAuthTries : 6 => 2
     - MaxSessions : system default => 10
+
 # 27-05-2016 - Release 1.6.0
 ### Summary
 - Updating module layout

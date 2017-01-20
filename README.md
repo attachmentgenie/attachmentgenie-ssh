@@ -5,20 +5,13 @@
 ####Table of Contents
 
 1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with attachmentgenie/ssh](#setup)
+2. [Setup - The basics of getting started with attachmentgenie/ssh](#setup)
     * [What attachmentgenie/ssh affects](#what-attachmentgenie/ssh-affects)
     * [Beginning with attachmentgenie/ssh](#beginning-with-attachmentgenie/ssh)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Development - Guide for contributing to the module](#development)
 
 ##Overview
-
-Module for configuring ssh on your Centos, Debian, Redhat, Ubuntu node.
-
-##Module Description
 
 The module makes it possible to install a ssh server and/or client and to add authorized ssh keys to existing users.
 
@@ -73,20 +66,6 @@ for effortless authentication with ssh:
       key => 'a8a7dgf7ad8j13g',
       comment => 'uggedal.com',
     }
-
-##Reference
-
-###Classes
-
-####Public Classes
-
-* ssh::server: Class that installs and configures a ssh server.
-* ssh::client: Class that installs and configures a ssh client.
-* ssh::user:   Class to add ssh keys to existing users.
-
-##Limitations
-
-Currently there are no know limitations
 
 ##Development
 

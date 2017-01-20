@@ -1,3 +1,7 @@
+# Class to manage flink parameters.
+#
+# Dont include this class directly.
+#
 class ssh::params {
   $accept_env                      = 'LANG LC_*'
   $address_family                  = 'any'
@@ -6,7 +10,7 @@ class ssh::params {
   $authorized_keys_file            = ['%h/.ssh/authorized_keys']
   $authorized_keys_command         = undef
   $authorized_keys_command_user    = undef
-  $banner_manage                   = true
+  $banner_manage                   = false
   $banner_template                 = 'ssh/issue.erb'
   $compression                     = undef
   $client_alive_interval           = 600
@@ -15,6 +19,7 @@ class ssh::params {
   $client_enable_ssh_key_sign      = 'yes'
   $client_forward_agent            = 'no'
   $client_hostbased_authentication = 'no'
+  $client_package_ensure           = 'present'
   $deny_groups                     = []
   $gateway_ports                   = 'no'
   $gssapi_authentication           = 'no'
@@ -26,7 +31,6 @@ class ssh::params {
   $max_auth_retries                = 2
   $max_sessions                    = 10
   $max_startups                    = '10:30:100'
-  $package                         = 'present'
   $password_authentication_groups  = []
   $password_authentication_users   = []
   $password_authentication         = 'no'
@@ -39,6 +43,8 @@ class ssh::params {
   $pubkey_authentication           = 'yes'
   $server_config_template          = 'ssh/sshd_config.erb'
   $server_key_bits                 = '1024'
+  $server_package                  = 'openssh-server'
+  $server_package_ensure           = 'present'
   $syslog_facility                 = 'AUTH'
   $syslog_level                    = 'VERBOSE'
   $use_pam                         = 'no'
@@ -52,6 +58,10 @@ class ssh::params {
   $ciphers66 = ['chacha20-poly1305@openssh.com',
                 'aes256-gcm@openssh.com',
                 'aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr']
+
+  $host_keys53 = ['/etc/ssh/ssh_host_rsa_key',
+                  '/etc/ssh/ssh_host_dsa_key',
+                  '/etc/ssh/ssh_host_ecdsa_key']
 
   $kex59 = ['diffie-hellman-group-exchange-sha256']
   $kex66 = ['curve25519-sha256@libssh.org',
@@ -73,21 +83,23 @@ class ssh::params {
 
   case $::osfamily {
     'Debian': {
-      $subsystem_sftp  = '/usr/lib/openssh/sftp-server'
-      $service_name = 'ssh'
-      $banner_file  = '/etc/issue.net'
+      $banner_file    = 'none'
+      $client_package = 'openssh-client'
+      $debian_banner  = 'no'
+      $service_name   = 'ssh'
+      $subsystem_sftp = '/usr/lib/openssh/sftp-server'
       case $::operatingsystemrelease {
-        /(7.*|12\.04.*)/ : {
+        /^7\..*/ : {
           $ciphers                  = $ciphers53
-          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $host_keys                = $host_keys53
           $kex_algorithms           = $kex59
           $macs                     = $macs59
           $permit_tty               = undef
           $use_privilege_separation = $ps59
         }
-        /(8.*|14\.04.*|16\.04.*)/ : {
+        /(^8\..*|^14\.04.*|^16\.04.*)/ : {
           $ciphers                  = $ciphers66
-          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $host_keys                = $host_keys53
           $kex_algorithms           = $kex66
           $macs                     = $macs66
           $permit_tty               = 'yes'
@@ -95,8 +107,8 @@ class ssh::params {
         }
         default : {
           $ciphers                  = $ciphers53
-          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
-          $kex_algorithms           = []
+          $host_keys                = $host_keys53
+          $kex_algorithms           = $kex66
           $macs                     = $macs59
           $permit_tty               = undef
           $use_privilege_separation = $ps59
@@ -104,21 +116,23 @@ class ssh::params {
       }
     }
     'RedHat': {
-      $subsystem_sftp  = '/usr/libexec/openssh/sftp-server'
-      $service_name = 'sshd'
-      $banner_file  = '/etc/issue'
+      $banner_file    = 'none'
+      $client_package = 'openssh-clients'
+      $debian_banner  = undef
+      $service_name   = 'sshd'
+      $subsystem_sftp = '/usr/libexec/openssh/sftp-server'
       case $::operatingsystemrelease {
-        /6.*/ : {
+        /^6\..*/ : {
           $ciphers                  = $ciphers53
-          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $host_keys                = $host_keys53
           $kex_algorithms           = []
           $macs                     = $macs53
           $permit_tty               = undef
           $use_privilege_separation = $ps53
         }
-        /7.*/ : {
+        /^7\..*/ : {
           $ciphers                  = $ciphers66
-          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key','/etc/ssh/ssh_host_ecdsa_key']
+          $host_keys                = $host_keys53
           $kex_algorithms           = $kex66
           $macs                     = $macs66
           $permit_tty               = 'yes'
@@ -126,7 +140,7 @@ class ssh::params {
         }
         default : {
           $ciphers                  = $ciphers53
-          $host_keys                = ['/etc/ssh/ssh_host_rsa_key','/etc/ssh/ssh_host_dsa_key']
+          $host_keys                = $host_keys53
           $kex_algorithms           = $kex66
           $macs                     = $macs59
           $permit_tty               = undef

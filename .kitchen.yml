@@ -10,7 +10,7 @@ verifier:
   name: inspec
   suite_name: default
   inspec_tests:
-    - https://github.com/dev-sec/tests-ssh-hardening
+    - https://github.com/dev-sec/ssh-baseline/archive/2.1.1.zip
 platforms:
 - name: ubuntu-14.04
   provisioner:
