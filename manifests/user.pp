@@ -10,21 +10,39 @@
 # @param key (String) Location of flink binary release.
 # @param comment (String) Location of flink binary release.
 # @param ensure (String) Group that owns flink files.
+# @param user (String) User the key belongs to.
 define ssh::user (
   $key,
-  $comment='',
-  $ensure=present,
+  $comment = undef,
+  $ensure  = present,
+  $user    = undef,
 ) {
 
-  if $ensure != present {
-    Ssh_authorized_key["${name}@${comment}"] -> User[$name]
-    Ssh_authorized_key["${name}@${comment}"] -> Group[$name]
+  if $comment {
+    $identifier = $comment
+  }  else {
+    if $user {
+      $identifier = $name
+    } else {
+      $identifier = ''
+    }
   }
 
-  ssh_authorized_key { "${name}@${comment}":
+  if $ensure != present {
+    Ssh_authorized_key["${username}@${identifier}"] -> User[$username]
+    Ssh_authorized_key["${username}@${identifier}"] -> Group[$username]
+  }
+
+  if $user {
+    $username = $user
+  } else {
+    $username = $name
+  }
+
+  ssh_authorized_key { "${username}@${identifier}":
     ensure => $ensure,
     key    => $key,
-    user   => $name,
+    user   => $username,
     type   => 'ssh-rsa',
   }
 }

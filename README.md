@@ -63,10 +63,14 @@ You can use `ssh::user` to add an authorized ssh key to an existing user
 for effortless authentication with ssh:
 
     ssh::user { 'attachmentgenie':
-      key => 'a8a7dgf7ad8j13g',
-      comment => 'attachmentgenie.com',
+      key     => 'a8a7dgf7ad8j13g',
+      comment => 'laptop',
     }
 
+    ssh::user { 'laptop':
+      key  => 'a8a7dgf7ad8j13g',
+      user => 'attachmentgenie',
+    }
 ##Development
 
 Please see [CONTRIBUTING](https://github.com/attachmentgenie/attachmentgenie-ssh/blob/master/CONTRIBUTING.md) for details.
