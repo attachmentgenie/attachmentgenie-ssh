@@ -1,3 +1,6 @@
+# 16-03-2017 - Release 2.1.0
+- Allowing users to have multiple authorized keys (#51)
+
 # 17-01-2017 - Release 2.0.0
 
 - Adding more parameters to/for ssh_config
