@@ -21,7 +21,7 @@ platforms:
 - name: debian-7.11
   provisioner:
     puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
-- name: debian-8.6
+- name: debian-8.7
   provisioner:
     puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
 - name: centos-6.8
