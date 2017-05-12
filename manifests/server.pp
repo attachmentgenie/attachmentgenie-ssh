@@ -179,8 +179,8 @@ class ssh::server (
   package { 'openssh-server':
     ensure => $package_ensure,
     name   => $package,
-  } ->
-  file { '/etc/ssh/sshd_config':
+  }
+  -> file { '/etc/ssh/sshd_config':
     content => template($template),
     owner   => root,
     group   => root,

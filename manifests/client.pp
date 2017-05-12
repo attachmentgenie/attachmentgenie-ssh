@@ -52,8 +52,8 @@ class ssh::client (
   package { 'openssh-client':
     ensure => $package_ensure,
     name   => $package_name,
-  } ->
-  file { '/etc/ssh/ssh_config':
+  }
+  -> file { '/etc/ssh/ssh_config':
     content => template($template),
     owner   => root,
     group   => root,

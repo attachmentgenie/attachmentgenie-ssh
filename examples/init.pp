@@ -1,5 +1,5 @@
-class { 'ssh::client': } ->
-class { 'ssh::server':
+class { 'ssh::client': }
+-> class { 'ssh::server':
   allowed_users => ['vagrant'],
 }
 ssh::user { 'vagrant':
