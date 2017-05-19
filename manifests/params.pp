@@ -59,9 +59,12 @@ class ssh::params {
                 'aes256-gcm@openssh.com',
                 'aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr']
 
-  $host_keys53 = ['/etc/ssh/ssh_host_rsa_key',
-                  '/etc/ssh/ssh_host_dsa_key',
+  $host_keys53 = ['/etc/ssh/ssh_host_rsa_key']
+  $host_keys59 = ['/etc/ssh/ssh_host_rsa_key',
                   '/etc/ssh/ssh_host_ecdsa_key']
+  $host_keys66 = ['/etc/ssh/ssh_host_rsa_key',
+                  '/etc/ssh/ssh_host_ecdsa_key',
+                  '/etc/ssh/ssh_host_ed25519_key']
 
   $kex59 = ['diffie-hellman-group-exchange-sha256']
   $kex66 = ['curve25519-sha256@libssh.org',
@@ -91,7 +94,7 @@ class ssh::params {
       case $::operatingsystemrelease {
         /^7\..*/ : {
           $ciphers                  = $ciphers53
-          $host_keys                = $host_keys53
+          $host_keys                = $host_keys59
           $kex_algorithms           = $kex59
           $macs                     = $macs59
           $permit_tty               = undef
@@ -99,7 +102,7 @@ class ssh::params {
         }
         /(^8\..*|^14\.04.*|^16\.04.*)/ : {
           $ciphers                  = $ciphers66
-          $host_keys                = $host_keys53
+          $host_keys                = $host_keys66
           $kex_algorithms           = $kex66
           $macs                     = $macs66
           $permit_tty               = 'yes'
@@ -107,7 +110,7 @@ class ssh::params {
         }
         default : {
           $ciphers                  = $ciphers53
-          $host_keys                = $host_keys53
+          $host_keys                = $host_keys66
           $kex_algorithms           = $kex66
           $macs                     = $macs59
           $permit_tty               = undef
@@ -132,17 +135,17 @@ class ssh::params {
         }
         /^7\..*/ : {
           $ciphers                  = $ciphers66
-          $host_keys                = $host_keys53
+          $host_keys                = $host_keys66
           $kex_algorithms           = $kex66
           $macs                     = $macs66
           $permit_tty               = 'yes'
           $use_privilege_separation = $ps59
         }
         default : {
-          $ciphers                  = $ciphers53
-          $host_keys                = $host_keys53
+          $ciphers                  = $ciphers66
+          $host_keys                = $host_keys66
           $kex_algorithms           = $kex66
-          $macs                     = $macs59
+          $macs                     = $macs66
           $permit_tty               = undef
           $use_privilege_separation = $ps59
         }
