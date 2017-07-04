@@ -18,13 +18,13 @@ platforms:
 - name: ubuntu-16.04
   provisioner:
     puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
-- name: debian-7.11
-  provisioner:
-    puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
-- name: debian-8.7
+- name: debian-8.8
   provisioner:
     puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
-- name: centos-6.8
+- name: debian-9.0
+  provisioner:
+    puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
+- name: centos-6.9
   provisioner:
     puppet_yum_collections_repo: http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
 - name: centos-7.3
