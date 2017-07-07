@@ -12,24 +12,24 @@ verifier:
   inspec_tests:
     - https://github.com/dev-sec/ssh-baseline/archive/2.2.0.zip
 platforms:
-- name: ubuntu-14.04
-  provisioner:
-    puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
-- name: ubuntu-16.04
-  provisioner:
-    puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
-- name: debian-8.8
-  provisioner:
-    puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
-- name: debian-9.0
-  provisioner:
-    puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
-- name: centos-6.9
-  provisioner:
-    puppet_yum_collections_repo: http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
-- name: centos-7.3
-  provisioner:
-    puppet_yum_collections_repo: http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+  - name: ubuntu-14.04
+    provisioner:
+      puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
+  - name: ubuntu-16.04
+    provisioner:
+      puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+  - name: debian-7.11
+    provisioner:
+      puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
+  - name: debian-8.8
+    provisioner:
+      puppet_apt_collections_repo: https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb
+  - name: centos-6.9
+    provisioner:
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppetlabs-release-pc1-el-6.noarch.rpm
+  - name: centos-7.3
+    provisioner:
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 suites:
   - name: puppet4
     provisioner:
