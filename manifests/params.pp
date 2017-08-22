@@ -5,6 +5,7 @@
 class ssh::params {
   $accept_env                      = 'LANG LC_*'
   $address_family                  = 'any'
+  $allow_agent_forwarding          = 'no'
   $allowed_users                   = []
   $allowed_groups                  = []
   $authorized_keys_file            = ['%h/.ssh/authorized_keys']

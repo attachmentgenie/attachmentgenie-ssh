@@ -9,6 +9,7 @@
 # @param package_ensure (String) Standard puppet package ensure.
 # @param accept_env (String) Specifies what environment variables sent by the client will be copied into the session's environ.
 # @param address_family (String) Specifies which address family should be used by sshd(8).
+# @param allow_agent_forwarding (String) Specifies whether ssh-agent forwarding is permitted.
 # @param allowed_users (Array) If specified, login is allowed only for user names that match one of the patterns.
 # @param allowed_groups (Array)  If specified, login is allowed only for users whose primary group or supplementary group list matches one of the pattern.
 # @param authorized_keys_file (String) Specifies the file that contains the public keys that can be used for user authentication.
@@ -62,6 +63,7 @@ class ssh::server (
   $package_ensure                 = $::ssh::params::server_package_ensure,
   $accept_env                     = $::ssh::params::accept_env,
   $address_family                 = $::ssh::params::address_family,
+  $allow_agent_forwarding         = $::ssh::params::allow_agent_forwarding,
   $allowed_users                  = $::ssh::params::allowed_users,
   $allowed_groups                 = $::ssh::params::allowed_groups,
   $authorized_keys_file           = $::ssh::params::authorized_keys_file,
