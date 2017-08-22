@@ -1,6 +1,6 @@
 # Managed by Puppet
 
-AllowAgentForwarding <%= allow_agent_forwarding %>
+AllowAgentForwarding <%= @allow_agent_forwarding %>
 AllowTcpForwarding no
 Port <%= @port %>
 <%- if @address_family -%>
