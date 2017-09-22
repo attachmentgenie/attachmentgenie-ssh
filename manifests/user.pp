@@ -7,15 +7,15 @@
 #     key => 'akalkalkalka',
 #   }
 #
-# @param key (String) Location of flink binary release.
-# @param comment (String) Location of flink binary release.
-# @param ensure (String) Group that owns flink files.
-# @param user (String) User the key belongs to.
+# @param key public key to trust.
+# @param comment Comment to save with public key.
+# @param ensure Ensure public key.
+# @param user User the key belongs to.
 define ssh::user (
-  $key,
-  $comment = undef,
-  $ensure  = present,
-  $user    = undef,
+  String $key,
+  Optional[String] $comment = undef,
+  String $ensure = present,
+  Optional[String] $user = undef,
 ) {
 
   if $comment {

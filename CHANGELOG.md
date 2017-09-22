@@ -1,3 +1,7 @@
+# 3.0.0
+
+    - moving to puppet 4/5 syntax
+
 # 16-03-2017 - Release 2.1.0
 - Allowing users to have multiple authorized keys (#51)
 

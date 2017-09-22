@@ -20,7 +20,7 @@ class ssh::params {
   $client_enable_ssh_key_sign      = 'yes'
   $client_forward_agent            = 'no'
   $client_hostbased_authentication = 'no'
-  $client_package_ensure           = 'present'
+  $client_package_version          = 'present'
   $deny_groups                     = []
   $gateway_ports                   = 'no'
   $gssapi_authentication           = 'no'
@@ -45,7 +45,7 @@ class ssh::params {
   $server_config_template          = 'ssh/sshd_config.erb'
   $server_key_bits                 = '1024'
   $server_package                  = 'openssh-server'
-  $server_package_ensure           = 'present'
+  $server_package_version          = 'present'
   $syslog_facility                 = 'AUTH'
   $syslog_level                    = 'VERBOSE'
   $use_pam                         = 'no'
