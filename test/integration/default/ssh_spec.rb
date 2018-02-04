@@ -5,7 +5,7 @@ control 'client 01' do
   client_package = 'openssh-client'
   client_package = 'openssh-clients' if os[:family] == 'redhat'
   describe package(client_package) do
-    it { should be_installed }
+    it { is_expected.to be_installed }
   end
 end
 
@@ -16,9 +16,9 @@ control 'server 01' do
   service_name = 'ssh'
   service_name = 'sshd' if os[:family] == 'redhat'
   describe service(service_name) do
-    it { should be_enabled }
-    it { should be_installed }
-    it { should be_running }
+    it { is_expected.to be_enabled }
+    it { is_expected.to be_installed }
+    it { is_expected.to be_running }
   end
 end
 
@@ -27,18 +27,18 @@ control 'keys 01' do
   title 'Verify authorized keys for user vagrant'
   desc 'Ensures authorized keys are set'
   describe file('/home/vagrant/.ssh/authorized_keys') do
-    it { should exist }
-    it { should be_file }
-    it { should be_owned_by 'vagrant' }
-    it { should be_grouped_into 'vagrant' }
-    it { should_not be_executable }
-    it { should be_readable.by('owner') }
-    it { should_not be_readable.by('group') }
-    it { should_not be_readable.by('other') }
-    it { should be_writable.by('owner') }
-    it { should_not be_writable.by('group') }
-    it { should_not be_writable.by('other') }
-    its('content') { should match /ssh-rsa foobarblabbq vagrant@/ }
+    it { is_expected.to exist }
+    it { is_expected.to be_file }
+    it { is_expected.to be_owned_by 'vagrant' }
+    it { is_expected.to be_grouped_into 'vagrant' }
+    it { is_expected.not_to be_executable }
+    it { is_expected.to be_readable.by('owner') }
+    it { is_expected.not_to be_readable.by('group') }
+    it { is_expected.not_to be_readable.by('other') }
+    it { is_expected.to be_writable.by('owner') }
+    it { is_expected.not_to be_writable.by('group') }
+    it { is_expected.not_to be_writable.by('other') }
+    its('content') { is_expected.to match %r{/ssh-rsa foobarblabbq vagrant@/} }
   end
 end
 
@@ -47,17 +47,17 @@ control 'keys 02' do
   title 'Verify authorized keys for user root'
   desc 'Ensures authorized keys are set'
   describe file('/root/.ssh/authorized_keys') do
-    it { should exist }
-    it { should be_file }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
-    it { should_not be_executable }
-    it { should be_readable.by('owner') }
-    it { should_not be_readable.by('group') }
-    it { should_not be_readable.by('other') }
-    it { should be_writable.by('owner') }
-    it { should_not be_writable.by('group') }
-    it { should_not be_writable.by('other') }
-    its('content') { should match /ssh-rsa foobarblabbq root@/ }
+    it { is_expected.to exist }
+    it { is_expected.to be_file }
+    it { is_expected.to be_owned_by 'root' }
+    it { is_expected.to be_grouped_into 'root' }
+    it { is_expected.not_to be_executable }
+    it { is_expected.to be_readable.by('owner') }
+    it { is_expected.not_to be_readable.by('group') }
+    it { is_expected.not_to be_readable.by('other') }
+    it { is_expected.to be_writable.by('owner') }
+    it { is_expected.not_to be_writable.by('group') }
+    it { is_expected.not_to be_writable.by('other') }
+    its('content') { is_expected.to match %r{/ssh-rsa foobarblabbq root@/} }
   end
 end
