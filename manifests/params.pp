@@ -14,7 +14,7 @@ class ssh::params {
   $banner_manage                   = false
   $banner_template                 = 'ssh/issue.erb'
   $compression                     = undef
-  $client_alive_interval           = 600
+  $client_alive_interval           = 300
   $client_alive_count_max          = 3
   $client_config_template          = 'ssh/ssh_config.erb'
   $client_enable_ssh_key_sign      = 'yes'
@@ -77,10 +77,9 @@ class ssh::params {
               'hmac-sha2-256,hmac-ripemd160']
   $macs66 = ['hmac-sha2-512-etm@openssh.com',
               'hmac-sha2-256-etm@openssh.com',
-              'hmac-ripemd160-etm@openssh.com',
               'umac-128-etm@openssh.com',
-              'hmac-sha2-512,hmac-sha2-256',
-              'hmac-ripemd160']
+              'hmac-sha2-512',
+              'hmac-sha2-256']
 
   $ps53 = 'yes'
   $ps59 = 'sandbox'

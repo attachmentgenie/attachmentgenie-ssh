@@ -38,7 +38,6 @@ control 'keys 01' do
     it { is_expected.to be_writable.by('owner') }
     it { is_expected.not_to be_writable.by('group') }
     it { is_expected.not_to be_writable.by('other') }
-    its('content') { is_expected.to match %r{/ssh-rsa foobarblabbq vagrant@/} }
   end
 end
 
@@ -58,6 +57,7 @@ control 'keys 02' do
     it { is_expected.to be_writable.by('owner') }
     it { is_expected.not_to be_writable.by('group') }
     it { is_expected.not_to be_writable.by('other') }
-    its('content') { is_expected.to match %r{/ssh-rsa foobarblabbq root@/} }
   end
 end
+
+include_controls 'ssh-baseline'

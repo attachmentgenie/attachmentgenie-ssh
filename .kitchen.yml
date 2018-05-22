@@ -2,21 +2,18 @@
 driver:
   name: vagrant
 provisioner:
-  manifest: init.pp
-  manifests_path: examples
   name: puppet_apply
+  manifests_path: test/fixtures/manifests
   require_chef_for_busser: false
   require_puppet_omnibus: true
 verifier:
   name: inspec
   suite_name: default
-  inspec_tests:
-    - https://github.com/dev-sec/ssh-baseline/archive/2.2.0.zip
 platforms:
-  - name: ubuntu-14.04
   - name: ubuntu-16.04
+  - name: ubuntu-18.04
   - name: debian-8.10
-  - name: debian-9.3
+  - name: debian-9.4
   - name: centos-6.9
   - name: centos-7.4
 suites:
