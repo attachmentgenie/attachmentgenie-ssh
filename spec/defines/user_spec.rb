@@ -8,12 +8,13 @@ describe 'ssh::user', type: :define do
         let(:title) { 'foo' }
         let :params do
           {
-            key: 'bar'
+            key: 'bar',
           }
         end
+
         it do
           is_expected.to contain_ssh_authorized_key('foo@').with(
-            'key' => 'bar'
+            'key' => 'bar',
           )
         end
       end
@@ -23,12 +24,13 @@ describe 'ssh::user', type: :define do
         let :params do
           {
             comment: 'bla',
-            key: 'bar'
+            key: 'bar',
           }
         end
+
         it do
           is_expected.to contain_ssh_authorized_key('foo@bla').with(
-            'key' => 'bar'
+            'key' => 'bar',
           )
         end
       end
@@ -38,12 +40,13 @@ describe 'ssh::user', type: :define do
         let :params do
           {
             key: 'bar',
-            user: 'foo'
+            user: 'foo',
           }
         end
+
         it do
           is_expected.to contain_ssh_authorized_key('foo@bbq').with(
-            'key' => 'bar'
+            'key' => 'bar',
           )
         end
       end

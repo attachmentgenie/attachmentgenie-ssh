@@ -44,7 +44,7 @@ end
 def on_os_under_test
   on_supported_os.reject do |os, _facts|
     (only_test_os && !only_test_os.include?(os)) ||
-        (exclude_test_os && exclude_test_os.include?(os))
+      (exclude_test_os && exclude_test_os.include?(os))
   end
 end
 

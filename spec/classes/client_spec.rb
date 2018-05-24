@@ -9,14 +9,14 @@ describe 'ssh::client', type: :class do
         it { is_expected.to contain_class('ssh::params') }
         it do
           is_expected.to contain_package('openssh-client').with(
-            'ensure' => 'present'
+            'ensure' => 'present',
           )
         end
         it do
           is_expected.to contain_file('/etc/ssh/ssh_config').with(
             'owner' => 'root',
             'group' => 'root',
-            'mode'  => '0644'
+            'mode'  => '0644',
           )
         end
       end

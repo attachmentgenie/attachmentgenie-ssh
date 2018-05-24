@@ -8,7 +8,9 @@ AllCops:
   Exclude:
   - bin/*
   - ".vendor/**/*"
+  - Guardfile
   - Gemfile
+  - Puppetfile
   - Rakefile
   - pkg/**/*
   - spec/fixtures/**/*
