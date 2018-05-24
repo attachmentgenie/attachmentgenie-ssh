@@ -18,15 +18,15 @@
 # @param template Template to use for config.
 class ssh::client (
   Array $ciphers = $::ssh::params::ciphers,
-  Enum['yes','no'] $enable_ssh_key_sign = $::ssh::params::client_enable_ssh_key_sign,
-  Enum['yes','no'] $forward_agent = $::ssh::params::client_forward_agent,
-  Enum['yes','no'] $hostbased_authentication = $::ssh::params::client_hostbased_authentication,
+  Ssh::YesNo $enable_ssh_key_sign = $::ssh::params::client_enable_ssh_key_sign,
+  Ssh::YesNo $forward_agent = $::ssh::params::client_forward_agent,
+  Ssh::YesNo $hostbased_authentication = $::ssh::params::client_hostbased_authentication,
   Array $kex_algorithms = $::ssh::params::kex_algorithms,
   Optional[Boolean] $known_host_sssd = $::ssh::params::known_host_sssd,
   Array $macs = $::ssh::params::macs,
   String $package_name = $::ssh::params::client_package,
   String $package_version = $::ssh::params::client_package_version,
-  Enum['yes','no'] $password_authentication = $::ssh::params::password_authentication,
+  Ssh::YesNo $password_authentication = $::ssh::params::password_authentication,
   String $template = $::ssh::params::client_config_template,
 ) inherits ssh::params {
   package { 'openssh-client':

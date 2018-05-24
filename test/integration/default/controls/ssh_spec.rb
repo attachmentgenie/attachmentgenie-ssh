@@ -41,23 +41,4 @@ control 'keys 01' do
   end
 end
 
-control 'keys 02' do
-  impact 1.0
-  title 'Verify authorized keys for user root'
-  desc 'Ensures authorized keys are set'
-  describe file('/root/.ssh/authorized_keys') do
-    it { is_expected.to exist }
-    it { is_expected.to be_file }
-    it { is_expected.to be_owned_by 'root' }
-    it { is_expected.to be_grouped_into 'root' }
-    it { is_expected.not_to be_executable }
-    it { is_expected.to be_readable.by('owner') }
-    it { is_expected.not_to be_readable.by('group') }
-    it { is_expected.not_to be_readable.by('other') }
-    it { is_expected.to be_writable.by('owner') }
-    it { is_expected.not_to be_writable.by('group') }
-    it { is_expected.not_to be_writable.by('other') }
-  end
-end
-
 include_controls 'ssh-baseline'
