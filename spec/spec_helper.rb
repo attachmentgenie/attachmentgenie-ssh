@@ -1,4 +1,3 @@
-
 require 'puppetlabs_spec_helper/module_spec_helper'
 require 'rspec-puppet-facts'
 
@@ -26,28 +25,6 @@ if File.exist?(default_module_facts_path) && File.readable?(default_module_facts
   default_facts.merge!(YAML.safe_load(File.read(default_module_facts_path)))
 end
 
-# Running tests with the ONLY_OS environment variable set
-# limits the tested platforms to the specified values.
-# Example: ONLY_OS=centos-7-x86_64,ubuntu-14-x86_64
-def only_test_os
-  ENV['ONLY_OS'].split(',') if ENV.key?('ONLY_OS')
-end
-
-# Running tests with the EXCLUDE_OS environment variable set
-# limits the tested platforms to all but the specified values.
-# Example: EXCLUDE_OS=centos-7-x86_64,ubuntu-14-x86_64
-def exclude_test_os
-  ENV['EXCLUDE_OS'].split(',') if ENV.key?('EXCLUDE_OS')
-end
-
-# Use the above environment variables to limit the platforms under test
-def on_os_under_test
-  on_supported_os.reject do |os, _facts|
-    (only_test_os && !only_test_os.include?(os)) ||
-      (exclude_test_os && exclude_test_os.include?(os))
-  end
-end
-
 RSpec.configure do |c|
   c.default_facts = default_facts
   c.before :each do
@@ -56,3 +33,12 @@ RSpec.configure do |c|
     Puppet.settings[:strict] = :warning
   end
 end
+
+def ensure_module_defined(module_name)
+  module_name.split('::').reduce(Object) do |last_module, next_module|
+    last_module.const_set(next_module, Module.new) unless last_module.const_defined?(next_module)
+    last_module.const_get(next_module)
+  end
+end
+
+# 'spec_overrides' from sync.yml will appear below this line

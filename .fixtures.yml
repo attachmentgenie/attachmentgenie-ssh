@@ -1,5 +1,6 @@
 fixtures:
   repositories:
+    sshkeys_core: "https://github.com/puppetlabs/puppetlabs-sshkeys_core.git"
     stdlib: "git://github.com/puppetlabs/puppetlabs-stdlib.git"
   symlinks:
     "ssh": "#{source_dir}"
