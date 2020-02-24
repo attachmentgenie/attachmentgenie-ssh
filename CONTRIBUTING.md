@@ -159,7 +159,8 @@ If you already have those gems installed, make sure they are up-to-date:
 With all dependencies in place and up-to-date we can now run the tests:
 
 ```shell
-% bundle exec rake spec
+% bundle exec rake {validate,lint,spec,strings:generate,guard}
+% bundle exec kitchen {list,converge,verify,test}
 ```
 
 This will execute all the [rspec tests](http://rspec-puppet.com/) tests
