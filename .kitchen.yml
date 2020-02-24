@@ -8,14 +8,14 @@ provisioner:
   require_puppet_omnibus: true
 verifier:
   name: inspec
-  suite_name: default
+  suite_name: hardening
 platforms:
   - name: ubuntu-16.04
   - name: ubuntu-18.04
-  - name: debian-8.11
   - name: debian-9.6
-  - name: centos-6.10
+  - name: debian-10.2
   - name: centos-7.7
+  - name: centos-8.1
 suites:
-  - name: puppet5
+  - name: puppet6
 

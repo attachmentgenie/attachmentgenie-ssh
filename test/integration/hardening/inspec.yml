@@ -1,4 +1,4 @@
-name: default
+name: hardening
 title: InSpec Profile
 maintainer: The Authors
 copyright: The Authors
@@ -8,4 +8,4 @@ summary: An InSpec Compliance Profile
 version: 0.1.0
 depends:
   - name: ssh-baseline
-    url: https://github.com/dev-sec/ssh-baseline/archive/2.3.2.zip
+    url: https://github.com/dev-sec/ssh-baseline/archive/2.4.1.zip
