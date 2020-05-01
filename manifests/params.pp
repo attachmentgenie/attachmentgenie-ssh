@@ -100,7 +100,7 @@ class ssh::params {
           $permit_tty               = undef
           $use_privilege_separation = $ps59
         }
-        /(^8\..*|^14\.04.*|^16\.04.*|^18\.04.*)/ : {
+        /(^8\..*|^14\.04.*|^16\.04.*|^18\.04.*|^20\.04.*)/ : {
           $ciphers                  = $ciphers66
           $host_keys                = $host_keys66
           $kex_algorithms           = $kex66
