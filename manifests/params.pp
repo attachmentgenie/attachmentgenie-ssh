@@ -141,6 +141,14 @@ class ssh::params {
           $permit_tty               = 'yes'
           $use_privilege_separation = $ps59
         }
+        /^7\..*/ : {
+          $ciphers                  = $ciphers66
+          $host_keys                = $host_keys66
+          $kex_algorithms           = $kex66
+          $macs                     = $macs66
+          $permit_tty               = 'yes'
+          $use_privilege_separation = $ps59
+        }
         default : {
           $ciphers                  = $ciphers66
           $host_keys                = $host_keys66
