@@ -2,8 +2,22 @@
 #
 # Use this module to install and configure ssh server.
 #
-# @example Declaring the class
-#   include ::ssh::server
+# @example The `ssh::server` class installs and configures the sshd
+#   class { 'ssh::server':
+#     password_authentication => 'yes',
+#   }
+# @example You can specify the port the sshd should listen to by including the class with this special syntax.
+#   class { 'ssh::server':
+#     port => 20009,
+#   }
+# @example You can also restrict access for only certain users.
+#   class { 'ssh::server':
+#     allowed_users => ['attachmentgenie', 'manager'],
+#   }
+# @example And you can permit root logins (not recommended) as permiting root logins could be a serious security issue. In most cases you should use something like ```sudo``` instead.
+#   class { 'ssh::server':
+#     permit_root_login => 'yes',
+#   }
 #
 # @param accept_env Specifies what environment variables sent by the client will be copied into the session's environ.
 # @param address_family Specifies which address family should be used by sshd(8).
