@@ -32,38 +32,38 @@ jobs:
 
       - name: Checkout Source
         uses: actions/checkout@v2
-        if: ${{ github.repository_owner == 'puppetlabs' }}
+        if: ${{ github.repository_owner == 'attachmentgenie' }}
 
       - name: Activate Ruby 2.7
         uses: ruby/setup-ruby@v1
-        if: ${{ github.repository_owner == 'puppetlabs' }}
+        if: ${{ github.repository_owner == 'attachmentgenie' }}
         with:
           ruby-version: "2.7"
           bundler-cache: true
 
       - name: Print bundle environment
-        if: ${{ github.repository_owner == 'puppetlabs' }}
+        if: ${{ github.repository_owner == 'attachmentgenie' }}
         run: |
           echo ::group::bundler environment
           buildevents cmd $TRACE_ID $STEP_ID 'bundle env' -- bundle env
           echo ::endgroup::
 
       - name: "Honeycomb: Record Setup Environment time"
-        if: ${{ github.repository_owner == 'puppetlabs' }}
+        if: ${{ github.repository_owner == 'attachmentgenie' }}
         run: |
           buildevents step $TRACE_ID $STEP_ID $STEP_START 'Setup Environment'
           echo STEP_ID=Setup-Acceptance-Test-Matrix >> $GITHUB_ENV
           echo STEP_START=$(date +%s) >> $GITHUB_ENV
 
       - name: Run Static & Syntax Tests
-        if: ${{ github.repository_owner == 'puppetlabs' }}
+        if: ${{ github.repository_owner == 'attachmentgenie' }}
         run: |
           buildevents cmd $TRACE_ID $STEP_ID 'static_syntax_checks' -- bundle exec rake syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
 
       - name: Setup Spec Test Matrix
         id: get-matrix
         run: |
-          if [ '${{ github.repository_owner }}' == 'puppetlabs' ]; then
+          if [ '${{ github.repository_owner }}' == 'attachmentgenie' ]; then
             buildevents cmd $TRACE_ID $STEP_ID matrix_from_metadata -- bundle exec matrix_from_metadata_v2
           else
             echo  "::set-output name=spec_matrix::{}"
