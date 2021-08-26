@@ -1,3 +1,21 @@
 ---
+.gitlab-ci.yml:
+  delete: true
+.github/workflows/pr_test.yml:
+  unmanaged: false
+.github/workflows/spec.yml:
+  checks: 'syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop'
+  unmanaged: false
+.github/workflows/release.yml:
+  unmanaged: false
 .kitchen.yml:
   unmanaged: true
+.travis.yml:
+  delete: true
+appveyor.yml:
+  delete: true
+Gemfile:
+  use_litmus: true
+  optional:
+    ':development':
+      - gem: github_changelog_generator

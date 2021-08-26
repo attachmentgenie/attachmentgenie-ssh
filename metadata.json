@@ -9,8 +9,8 @@
   "issues_url": "https://github.com/attachmentgenie/attachmentgenie-ssh/issues",
   "dependencies": [
     {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 4.13.0 < 6.0.0"
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.25.0 < 9.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -41,7 +41,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.7.0 < 7.0.0"
+      "version_requirement": ">= 6.1.0 < 8.0.0"
     }
   ],
   "description": "Module for configuring ssh.",
