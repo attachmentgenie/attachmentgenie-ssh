@@ -1,4 +1,6 @@
 ---
+common:
+  owner: attachmentgenie
 .gitlab-ci.yml:
   delete: true
 .github/workflows/pr_test.yml:
