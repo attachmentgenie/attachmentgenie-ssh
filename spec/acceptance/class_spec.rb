@@ -10,6 +10,10 @@ describe 'with default parameters ', if: ['debian', 'redhat', 'ubuntu'].include?
   }
 PUPPETCODE
 
+  it 'applies idempotently' do
+    idempotent_apply(pp)
+  end
+
   describe file('/home/vagrant/.ssh/authorized_keys') do
     it { is_expected.to be_file }
   end
