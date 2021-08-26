@@ -1,3 +1,4 @@
+# Extended enum
 type Ssh::UsePrivilegeSeparation = Enum[
   'yes',
   'no',

@@ -2,7 +2,7 @@
 #
 # Use this module to install and configure ssh client.
 #
-# @example Declaring the class
+# @example The `ssh::client` class installs the ssh client
 #   include ::ssh::client
 #
 # @param ciphers List of ciphers that can be accepted.

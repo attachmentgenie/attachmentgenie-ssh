@@ -2,9 +2,10 @@
 #
 # Use this module to install and configure ssh keys.
 #
-# @example Declaring the class
-#   ssh::user {
-#     key => 'akalkalkalka',
+# @example You can use `ssh::user` to add an authorized ssh key to an existing user for effortless authentication with ssh.
+#   ssh::user { 'attachmentgenie':
+#     key     => 'a8a7dgf7ad8j13g',
+#     comment => 'laptop',
 #   }
 #
 # @param key public key to trust.

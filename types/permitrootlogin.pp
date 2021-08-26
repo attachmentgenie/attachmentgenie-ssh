@@ -1,3 +1,4 @@
+# Extended enum
 type Ssh::PermitRootLogin = Enum[
   'yes',
   'no',
